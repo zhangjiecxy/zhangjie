@@ -124,9 +124,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ErrorPage\404.aspx.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPage\404.aspx.designer.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ErrorPage\Browser_Not_Support.aspx.cs">
+      <DependentUpon>Browser_Not_Support.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPage\Browser_Not_Support.aspx.designer.cs">
+      <DependentUpon>Browser_Not_Support.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -135,6 +149,8 @@
     <Compile Include="Controllers\StaffController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ErrorPage\404.aspx" />
+    <Content Include="ErrorPage\Browser_Not_Support.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -143,9 +159,37 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\0.jpg" />
+    <Content Include="Images\1.jpg" />
+    <Content Include="Images\2.jpg" />
+    <Content Include="Images\captcha.jpeg.jpg" />
+    <Content Include="Images\copy_rignt_24.png" />
+    <Content Include="Images\Login\137.png" />
+    <Content Include="Images\Login\bg_1.jpg" />
+    <Content Include="Images\Login\bj.jpg" />
+    <Content Include="Images\Login\b_01.jpg" />
+    <Content Include="Images\Login\b_03.jpg" />
+    <Content Include="Images\Login\b_04.jpg" />
+    <Content Include="Images\Login\c_02.jpg" />
+    <Content Include="Images\Login\c_05.jpg" />
+    <Content Include="Images\Login\c_06.jpg" />
+    <Content Include="Images\Login\c_061.jpg" />
+    <Content Include="Images\Login\loading.gif" />
+    <Content Include="Images\Login\login-v2-load.png" />
+    <Content Include="Images\mask.png" />
+    <Content Include="Layer\layer.js" />
+    <Content Include="Layer\mobile\layer.js" />
+    <Content Include="Layer\mobile\need\layer.css" />
+    <Content Include="Layer\skin\default\icon-ext.png" />
+    <Content Include="Layer\skin\default\icon.png" />
+    <Content Include="Layer\skin\default\layer.css" />
+    <Content Include="Layer\skin\default\loading-0.gif" />
+    <Content Include="Layer\skin\default\loading-1.gif" />
+    <Content Include="Layer\skin\default\loading-2.gif" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\Company发布不带IP（temp）.pubxml" />
+    <None Include="Properties\PublishProfiles\Company发布带IP（tempfortest）.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -157,6 +201,13 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Style\bootstrap.css" />
+    <Content Include="Style\bootstrap.min.css" />
+    <Content Include="Style\desktop.css" />
+    <Content Include="Style\login.css" />
+    <Content Include="Style\pagination.css" />
+    <Content Include="Style\Site.css" />
+    <Content Include="Style\style.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
