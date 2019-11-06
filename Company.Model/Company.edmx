@@ -26,7 +26,6 @@
         </EntityType>
         <EntityType Name="User_Login">
           <Key>
-            <PropertyRef Name="GUID" />
             <PropertyRef Name="Login_name" />
           </Key>
           <Property Name="GUID" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -69,7 +68,7 @@
         </EntityType>
         <EntityType Name="User_Login">
           <Key>
-            <PropertyRef Name="GUID" />
+            <PropertyRef Name="Login_name" />
           </Key>
           <Property Name="GUID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Login_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />

@@ -327,7 +327,7 @@
                         });
                          
                     } else {                        
-                        layer.alert(rs)
+                        alert(rs)
                         // window.location.href = window.location.href.replace('#', '');
                     }
                 });

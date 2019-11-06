@@ -46,13 +46,11 @@ namespace Company.UI
                         }
                         else
                         {
-                            string ls_name1  = db.User_Login.Find(Account).Login_name;
-                             db.User_Login.SqlQuery("select Login_name from User_Login where Login_name=@loginname"
-                                , new SqlParameter("@loginname", Account));
+                            User_Login user_Login = db.User_Login.Find(Account);
 
-                            string ls_name = SqlHelper.ExecuteScalar("select Login_name from User_Login where Login_name=@loginname", "@loginname=" + Account);
-                            string ls_pwd = SqlHelper.ExecuteScalar("select Login_password from User_Login where Login_name=@loginname", "@loginname=" + Account);
-
+                            string ls_name  = user_Login.Login_name;
+                            string ls_pwd = user_Login.Login_password;
+                        
                             if (string.IsNullOrEmpty(ls_name))
                             {
                                 Msg = "4"; //账户或密码不对
