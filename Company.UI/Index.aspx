@@ -152,7 +152,7 @@
             z-index: -1000;
             float: right;
         }
-        /*.screenbg ul a
+        .screenbg ul a
         {
             left: 0;
             top: 0;
@@ -162,8 +162,8 @@
             margin: 0;
             padding: 0;
             cursor: default;
-        }*/
-        .screenbg img
+        }
+        .screenbg a img
         {
             border-style: none;
             border-color: inherit;
@@ -180,7 +180,7 @@
             float: right;
             top: 0px;
             left: 0px;
-            bottom: -131px;
+            bottom: -202px;
         }
         .bottom
         {
@@ -206,10 +206,10 @@
             text-decoration: underline;
         }
     </style>
-    <script src="Scripts/jquery-3.3.1.min.js"></script>
-    <script src="Scripts/FunctionJS.js"></script>
-    <script src="Layer/layer.js"></script>
-    <script type="text/javascript">
+    <script type="text/javascript" src="Scripts/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="Scripts/FunctionJS.js"></script>
+    <script type="text/javascript" src="Layer/layer.js"></script>
+     <script type="text/javascript">
         $(function () {
             $(".screenbg ul li").each(function () {
                 $(this).css("opacity", "0");
@@ -218,12 +218,23 @@
             var index = 0;
             var t;
             var li = $(".screenbg ul li");
-            
+            var number = li.size();            
             function change(index) {
                 li.css("visibility", "visible");
                 li.eq(index).siblings().animate({ opacity: 0 }, 3000);
                 li.eq(index).animate({ opacity: 1 }, 3000);
             }
+            function show() {
+                index = index + 1;
+                if (index <= number - 1) {
+                    change(index);
+                } else {
+                    index = 0;
+                    change(index);
+                }
+            }
+            t = setInterval(show, 8000);
+            
         });
         /*
         检查浏览器是否支持
@@ -285,7 +296,8 @@
             if (!LoginBtn()) {
                 return false;
             }
-            else {               
+            else {
+                 
                 var Account = $("#Account").val();
                 var Pwd = $("#Pwd").val();
                 var code = $("#Code").val();
@@ -303,7 +315,7 @@
                     } else if (parseInt(rs) == 2) {
                         $("#Account").focus();
                         showTopMsg("登录账户被停用", 4000, 'error');
-                         
+                        
                     } else if (parseInt(rs) == 4) {
                         $("#Account").focus();
                         layer.tips('账户或密码有错误', '#Account', {
@@ -311,13 +323,13 @@
                             time: 2000
                         });
                         resetInput();
-                         
+                        
                     } else if (parseInt(rs) == 6) {
                         $("#Account").focus();
                         showTopMsg("该用户已经登录", 4000, 'error');
-                         
+                        
                     } else if (parseInt(rs) == 3) {
-                        self.location = "Home/About"; //登陆成功进入后台界面
+                         self.location = "Home/About"; //登陆成功进入后台界面
                         //setInterval(Load, 1000);
                     } else if (parseInt(rs) == 7) {
                         $("#Account").focus();
@@ -325,9 +337,10 @@
                             tips: [1, '#FF0000'],
                             time: 2000
                         });
-                         
-                    } else {                        
-                        alert(rs)
+                        
+                    } else {
+                        
+                        layer.alert(rs);
                         // window.location.href = window.location.href.replace('#', '');
                     }
                 });
@@ -340,12 +353,13 @@
             $("#Pwd").val("");
             $("#Code").val("");
         }
+
     </script>
 </head>
 <body>
     <div class="login-box">
         <h1>
-            管理系统</h1>
+            后台管理系统</h1>
         <form method="post" action="">
         <div class="name">
             <label id="lblAccount">
@@ -373,8 +387,8 @@
         </div>--%>
         <br />
         <div class="login">
-            <input type="button"  class="button"  id="Log_Submit"  value="登陆" onclick="CheckUserDataValid()"/>
-<%--            <button id="Log_Submit"  onclick="return CheckUserDataValid();" >
+            <input  type="button" id="Log_Submit"  class="button" onclick="CheckUserDataValid()" value="登录"/>
+<%--            <button type="submit" id="Log_Submit"  onclick="return CheckUserDataValid();" >
                 登录</button>--%>
         </div>
         </form>
@@ -383,22 +397,15 @@
         ©2014 Leting <a href="javascript:;" target="_blank">关于</a> <span>京ICP证030173号</span><img
             width="13" height="16" src="Images/copy_rignt_24.png" /></div>--%>
     <div class="screenbg">
-<%--        <ul>
+        <ul>
             <li><a href="javascript:;">
                 <img src="Images/0.jpg"></a></li>
             <li><a href="javascript:;">
                 <img src="Images/1.jpg"></a></li>
             <li><a href="javascript:;">
                 <img src="Images/2.jpg"></a></li>
-        </ul>--%>
-                <ul>
-            <li>
-                <img src="Images/0.jpg"></li>
-            <li>
-                <img src="Images/1.jpg"></li>
-            <li>
-                <img src="Images/2.jpg"></li>
         </ul>
     </div>
 </body>
 </html>
+
