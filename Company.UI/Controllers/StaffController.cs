@@ -13,16 +13,20 @@ namespace Company.UI
 {
     public class StaffController : Controller
     {
+        //数据上下文对象
         private CompanyEntities db = new CompanyEntities();
+
         private IStaffService StaffService = BLLContainer.Container.Resolve<IStaffService>();
         // GET: Staff
         public ActionResult Index()
         {
-            List<Staff> list = StaffService.GetModels(p => true).ToList();
+            List<Model.Staff> staffs = db.Staff.Where(p => p.StaffId != "").ToList();
 
-            return View(db.Staff.ToList());
+            //return View(db.Staff.ToList());
 
-            //return View(list);
+            //将数据集合传给视图
+            ViewData["datalist"] = staffs;
+            return View();
         }
 
         // GET: Staff/Details/5

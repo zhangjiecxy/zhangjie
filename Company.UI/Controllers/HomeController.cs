@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Company.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +9,10 @@ namespace Company.UI.Controllers
 {
     public class HomeController : Controller
     {
+        //数据上下文对象
+        CompanyEntities db = new CompanyEntities();
         public ActionResult Index()
-        {
+        {            
             return View();
         }
 

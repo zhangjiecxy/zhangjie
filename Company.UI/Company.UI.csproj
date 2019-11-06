@@ -46,16 +46,132 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Abp, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.4.0.0\lib\netstandard2.0\Abp.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Facilities.Logging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.LoggingFacility.4.1.1\lib\net45\Castle.Facilities.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Windsor.4.1.1\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="gyfunc">
+      <HintPath>..\..\..\Mytest\Mytest\bin\gyfunc.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=2018.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.2018.2.1\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=2.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.2.1.2\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=2.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Memory.2.1.2\lib\netstandard2.0\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Context, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nito.AsyncEx.Context.1.1.0\lib\net46\Nito.AsyncEx.Context.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Coordination, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nito.AsyncEx.Coordination.1.0.2\lib\net46\Nito.AsyncEx.Coordination.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Tasks, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nito.AsyncEx.Tasks.1.1.0\lib\net46\Nito.AsyncEx.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.Collections.Deque, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nito.Collections.Deque.1.0.0\lib\portable45-net45+win8+wp8+wpa81\Nito.Collections.Deque.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.Disposables, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nito.Disposables.1.0.0\lib\portable45-net45+win8+wp8+wpa81\Nito.Disposables.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.5.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.4.5.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Common, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic.Core, Version=1.0.9.0, Culture=neutral, PublicKeyToken=0f07ec44de6ac832, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.Core.1.0.9\lib\net46\System.Linq.Dynamic.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.1\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Serialization.Formatters.4.3.0\lib\net46\System.Runtime.Serialization.Formatters.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Primitives, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Serialization.Primitives.4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.AccessControl, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.4.5.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Claims, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Claims.4.3.0\lib\net46\System.Security.Claims.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.4.5.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.4.5.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -106,8 +222,21 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="System.Xml.XmlDocument, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XmlDocument.4.3.0\lib\net46\System.Xml.XmlDocument.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.XPath, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XPath.4.3.0\lib\net46\System.Xml.XPath.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.XPath.XmlDocument, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XPath.XmlDocument.4.3.0\lib\net46\System.Xml.XPath.XmlDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="TimeZoneConverter, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TimeZoneConverter.2.4.2\lib\net45\TimeZoneConverter.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -142,23 +271,150 @@
       <DependentUpon>Browser_Not_Support.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Frame.ashx.cs">
+      <DependentUpon>Frame.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\StaffController.cs" />
+    <Compile Include="VerifyCode.ashx.cs">
+      <DependentUpon>VerifyCode.ashx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ErrorPage\404.aspx" />
     <Content Include="ErrorPage\Browser_Not_Support.aspx" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Index.aspx" />
+    <Content Include="Layer\css\layui.css" />
+    <Content Include="Layer\css\layui.mobile.css" />
+    <Content Include="Layer\css\modules\code.css" />
+    <Content Include="Layer\css\modules\laydate\default\laydate.css" />
+    <Content Include="Layer\css\modules\layer\default\icon-ext.png" />
+    <Content Include="Layer\css\modules\layer\default\icon.png" />
+    <Content Include="Layer\css\modules\layer\default\layer.css" />
+    <Content Include="Layer\css\modules\layer\default\loading-0.gif" />
+    <Content Include="Layer\css\modules\layer\default\loading-1.gif" />
+    <Content Include="Layer\css\modules\layer\default\loading-2.gif" />
+    <Content Include="Layer\font\iconfont.svg" />
+    <Content Include="Layer\images\face\0.gif" />
+    <Content Include="Layer\images\face\1.gif" />
+    <Content Include="Layer\images\face\10.gif" />
+    <Content Include="Layer\images\face\11.gif" />
+    <Content Include="Layer\images\face\12.gif" />
+    <Content Include="Layer\images\face\13.gif" />
+    <Content Include="Layer\images\face\14.gif" />
+    <Content Include="Layer\images\face\15.gif" />
+    <Content Include="Layer\images\face\16.gif" />
+    <Content Include="Layer\images\face\17.gif" />
+    <Content Include="Layer\images\face\18.gif" />
+    <Content Include="Layer\images\face\19.gif" />
+    <Content Include="Layer\images\face\2.gif" />
+    <Content Include="Layer\images\face\20.gif" />
+    <Content Include="Layer\images\face\21.gif" />
+    <Content Include="Layer\images\face\22.gif" />
+    <Content Include="Layer\images\face\23.gif" />
+    <Content Include="Layer\images\face\24.gif" />
+    <Content Include="Layer\images\face\25.gif" />
+    <Content Include="Layer\images\face\26.gif" />
+    <Content Include="Layer\images\face\27.gif" />
+    <Content Include="Layer\images\face\28.gif" />
+    <Content Include="Layer\images\face\29.gif" />
+    <Content Include="Layer\images\face\3.gif" />
+    <Content Include="Layer\images\face\30.gif" />
+    <Content Include="Layer\images\face\31.gif" />
+    <Content Include="Layer\images\face\32.gif" />
+    <Content Include="Layer\images\face\33.gif" />
+    <Content Include="Layer\images\face\34.gif" />
+    <Content Include="Layer\images\face\35.gif" />
+    <Content Include="Layer\images\face\36.gif" />
+    <Content Include="Layer\images\face\37.gif" />
+    <Content Include="Layer\images\face\38.gif" />
+    <Content Include="Layer\images\face\39.gif" />
+    <Content Include="Layer\images\face\4.gif" />
+    <Content Include="Layer\images\face\40.gif" />
+    <Content Include="Layer\images\face\41.gif" />
+    <Content Include="Layer\images\face\42.gif" />
+    <Content Include="Layer\images\face\43.gif" />
+    <Content Include="Layer\images\face\44.gif" />
+    <Content Include="Layer\images\face\45.gif" />
+    <Content Include="Layer\images\face\46.gif" />
+    <Content Include="Layer\images\face\47.gif" />
+    <Content Include="Layer\images\face\48.gif" />
+    <Content Include="Layer\images\face\49.gif" />
+    <Content Include="Layer\images\face\5.gif" />
+    <Content Include="Layer\images\face\50.gif" />
+    <Content Include="Layer\images\face\51.gif" />
+    <Content Include="Layer\images\face\52.gif" />
+    <Content Include="Layer\images\face\53.gif" />
+    <Content Include="Layer\images\face\54.gif" />
+    <Content Include="Layer\images\face\55.gif" />
+    <Content Include="Layer\images\face\56.gif" />
+    <Content Include="Layer\images\face\57.gif" />
+    <Content Include="Layer\images\face\58.gif" />
+    <Content Include="Layer\images\face\59.gif" />
+    <Content Include="Layer\images\face\6.gif" />
+    <Content Include="Layer\images\face\60.gif" />
+    <Content Include="Layer\images\face\61.gif" />
+    <Content Include="Layer\images\face\62.gif" />
+    <Content Include="Layer\images\face\63.gif" />
+    <Content Include="Layer\images\face\64.gif" />
+    <Content Include="Layer\images\face\65.gif" />
+    <Content Include="Layer\images\face\66.gif" />
+    <Content Include="Layer\images\face\67.gif" />
+    <Content Include="Layer\images\face\68.gif" />
+    <Content Include="Layer\images\face\69.gif" />
+    <Content Include="Layer\images\face\7.gif" />
+    <Content Include="Layer\images\face\70.gif" />
+    <Content Include="Layer\images\face\71.gif" />
+    <Content Include="Layer\images\face\8.gif" />
+    <Content Include="Layer\images\face\9.gif" />
+    <Content Include="Layer\layer.js" />
+    <Content Include="Layer\layui.all.js" />
+    <Content Include="Layer\layui.js" />
+    <Content Include="Layer\lay\modules\carousel.js" />
+    <Content Include="Layer\lay\modules\code.js" />
+    <Content Include="Layer\lay\modules\colorpicker.js" />
+    <Content Include="Layer\lay\modules\element.js" />
+    <Content Include="Layer\lay\modules\flow.js" />
+    <Content Include="Layer\lay\modules\form.js" />
+    <Content Include="Layer\lay\modules\jquery.js" />
+    <Content Include="Layer\lay\modules\laydate.js" />
+    <Content Include="Layer\lay\modules\layedit.js" />
+    <Content Include="Layer\lay\modules\layer.js" />
+    <Content Include="Layer\lay\modules\laypage.js" />
+    <Content Include="Layer\lay\modules\laytpl.js" />
+    <Content Include="Layer\lay\modules\mobile.js" />
+    <Content Include="Layer\lay\modules\rate.js" />
+    <Content Include="Layer\lay\modules\slider.js" />
+    <Content Include="Layer\lay\modules\table.js" />
+    <Content Include="Layer\lay\modules\transfer.js" />
+    <Content Include="Layer\lay\modules\tree.js" />
+    <Content Include="Layer\lay\modules\upload.js" />
+    <Content Include="Layer\lay\modules\util.js" />
+    <Content Include="Layer\skin\default\icon-ext.png" />
+    <Content Include="Layer\skin\default\icon.png" />
+    <Content Include="Layer\skin\default\layer.css" />
+    <Content Include="Layer\skin\default\loading-0.gif" />
+    <Content Include="Layer\skin\default\loading-1.gif" />
+    <Content Include="Layer\skin\default\loading-2.gif" />
+    <Content Include="Scripts\FunctionJS.js" />
+    <Content Include="Style\bootstrap-theme.css" />
+    <Content Include="Style\bootstrap-theme.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\typicons.svg" />
+    <Content Include="fonts\weathericons-regular-webfont.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Images\0.jpg" />
     <Content Include="Images\1.jpg" />
     <Content Include="Images\2.jpg" />
@@ -177,17 +433,22 @@
     <Content Include="Images\Login\loading.gif" />
     <Content Include="Images\Login\login-v2-load.png" />
     <Content Include="Images\mask.png" />
-    <Content Include="Layer\layer.js" />
-    <Content Include="Layer\mobile\layer.js" />
-    <Content Include="Layer\mobile\need\layer.css" />
-    <Content Include="Layer\skin\default\icon-ext.png" />
-    <Content Include="Layer\skin\default\icon.png" />
-    <Content Include="Layer\skin\default\layer.css" />
-    <Content Include="Layer\skin\default\loading-0.gif" />
-    <Content Include="Layer\skin\default\loading-1.gif" />
-    <Content Include="Layer\skin\default\loading-2.gif" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\typicons.eot" />
+    <Content Include="fonts\typicons.ttf" />
+    <Content Include="fonts\typicons.woff" />
+    <Content Include="fonts\weathericons-regular-webfont.eot" />
+    <Content Include="fonts\weathericons-regular-webfont.ttf" />
+    <Content Include="fonts\weathericons-regular-webfont.woff" />
+    <Content Include="Layer\font\iconfont.eot" />
+    <Content Include="Layer\font\iconfont.ttf" />
+    <Content Include="Layer\font\iconfont.woff" />
+    <Content Include="Layer\font\iconfont.woff2" />
+    <Content Include="Frame.ashx" />
     <None Include="Properties\PublishProfiles\Company发布不带IP（temp）.pubxml" />
     <None Include="Properties\PublishProfiles\Company发布带IP（tempfortest）.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -204,6 +465,7 @@
     <Content Include="Style\bootstrap.css" />
     <Content Include="Style\bootstrap.min.css" />
     <Content Include="Style\desktop.css" />
+    <Content Include="Style\font-awesome.min.css" />
     <Content Include="Style\login.css" />
     <Content Include="Style\pagination.css" />
     <Content Include="Style\Site.css" />
@@ -231,6 +493,10 @@
     <Content Include="Views\Staff\Details.cshtml" />
     <Content Include="Views\Staff\Edit.cshtml" />
     <Content Include="Views\Staff\Index.cshtml" />
+    <Content Include="Views\Shared\_indexLayout.cshtml" />
+    <Content Include="Views\Shared\_searchButtons.cshtml" />
+    <Content Include="Views\Shared\_header.cshtml" />
+    <Content Include="VerifyCode.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -240,15 +506,19 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Style\bootstrap.min.css.map" />
+    <Content Include="Style\bootstrap.css.map" />
+    <Content Include="Style\bootstrap-theme.min.css.map" />
+    <Content Include="Style\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{99D03D82-96FB-4EC6-B046-C76A6C6F6D26}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Company.BLLContainer\Company.BLLContainer.csproj">
       <Project>{d8281c46-14f6-4b15-9978-49f9c9115282}</Project>
       <Name>Company.BLLContainer</Name>

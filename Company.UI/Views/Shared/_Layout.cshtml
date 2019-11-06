@@ -1,43 +1,80 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>外网服务器访问测试</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Html.Partial("_header")
+    <title>@ViewBag.Title</title>
+
+    @RenderSection("Styles", false)
+    <script>
+
+    </script>
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("应用程序名称", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                    <li>@Html.ActionLink("关于", "About", "Home")</li>
-                    <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <div class="layui-header">
+            <div class="layui-logo">后台</div>
+
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item">
+                    <a href=""></a>
+                </li>
+            </ul>
+            @*<ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="#">
+                        <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                        贤心
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">基本资料</a></dd>
+                        <dd><a href="">安全设置</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">退出登录</a></li>
+            </ul>*@
+        </div>
+
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">               
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a class="" href="/Home/About">首页</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="/Home/About">爬虫</a></dd>
+                            <dd><a href="/Staff/Index">员工</a></dd>  
+                        </dl>
+                    </li>
+                    @*<li class="layui-nav-item">
+                        <a href="#">解决方案</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="#">列表一</a></dd>
+                            <dd><a href="#">列表二</a></dd>
+                            <dd><a href="">超链接</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="">云市场</a></li>*@
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
-        </footer>
+
+
+        <!-- 内容主体区域 -->
+        <div class="layui-body">
+            <div style="padding: 15px;">
+                @RenderSection("Search", false)
+
+                @RenderBody()
+            </div>
+        </div>
+
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            ©www.JRerp.com 版权所有 广州市杰瑞科技有限公司
+        </div>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        @RenderSection("Scripts", false)
 </body>
 </html>

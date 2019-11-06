@@ -1,47 +1,45 @@
-﻿@model IEnumerable<Company.Model.Staff>
+﻿@using Company.Model
 @{
-    Layout = null;
-    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div>
-        <h1>简单的画一个表格展示数据</h1>
-        <table border="1" cellpadding="0" cellspacing="0">
-            <tr>
-                <th>ID</th> 
-                <th>姓名</th>
-                <th>年龄</th>
-                <th>性别</th>
-            </tr>
-            @foreach (var item in Model) 
-            {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StaffId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Age)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sex)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.StaffId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.StaffId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.StaffId })
-                </td>
-            </tr>
-            }
-        </table>
+@section Search{
+    <div class="divSearchForm" id="searchToolbar">
+        <form class="form-inline form-search" method="post" style="margin-bottom:5px">
+            <div class="form-group">
+                <label class="control-label">检索词</label>
+                <input class="input-sm form-control" name="Filter" />
+            </div>
+            @Html.Partial("~/Views/Shared/_searchButtons.cshtml")
+        </form>
     </div>
-</body>
-</html>
+}
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>ID</th>*@
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!--遍历Action方法 设置给viewdata的数据集合，生成html代码-->
+        @foreach (Staff staff in ViewData["datalist"] as List<Staff>)
+        {
+            <tr>
+                <td>@staff.Name</td>
+                <td>@staff.Age </td>
+                <td>@(staff.Sex=="1"?"男":"女") </td>                
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = staff.StaffId }) |
+                    @Html.ActionLink("Details", "Details", new { id = staff.StaffId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = staff.StaffId })
+                </td>
+            </tr>
+        }
+
+
+
+    </tbody>
+</table>

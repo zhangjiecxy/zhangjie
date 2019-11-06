@@ -26,5 +26,7 @@ namespace Company.Model
         }
     
         public DbSet<Staff> Staff { get; set; }
+        public DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public DbSet<User_Login> User_Login { get; set; }
     }
 }
