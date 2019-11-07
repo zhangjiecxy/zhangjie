@@ -297,13 +297,13 @@
                 return false;
             }
             else {
-                 
                 var Account = $("#Account").val();
                 var Pwd = $("#Pwd").val();
                 var code = $("#Code").val();
                 var parm = 'action=login&Account=' + escape(Account) + '&Pwd=' + escape(Pwd) + '&code=' + escape(code);
-                getAjax('Frame.ashx', parm, function (rs) {
+                getAjax('Frame.ashx', parm, function (rs) {                    
                     if (parseInt(rs) == 1) {
+                        debugger
                         $("#Code").focus();
                         layer.tips('验证码输入不正确', '#Code', {
                             tips: [1, '#FF0000'],
@@ -330,7 +330,7 @@
                         
                     } else if (parseInt(rs) == 3) {
                          self.location = "Home/About"; //登陆成功进入后台界面
-                        //setInterval(Load, 1000);
+                        
                     } else if (parseInt(rs) == 7) {
                         $("#Account").focus();
                         layer.tips('内部错误,登录失败', '#Account', {
@@ -340,7 +340,7 @@
                         
                     } else {
                         
-                        layer.alert(rs);
+                        alert(rs);
                         // window.location.href = window.location.href.replace('#', '');
                     }
                 });
@@ -388,8 +388,6 @@
         <br />
         <div class="login">
             <input  type="button" id="Log_Submit"  class="button" onclick="CheckUserDataValid()" value="登录"/>
-<%--            <button type="submit" id="Log_Submit"  onclick="return CheckUserDataValid();" >
-                登录</button>--%>
         </div>
         </form>
     </div>

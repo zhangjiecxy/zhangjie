@@ -1,4 +1,5 @@
 ﻿
+using Abp.Runtime.Security;
 using baseclass;
 using Common;
 using Company.Model;
@@ -6,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Web;
+using System.Web.Mvc;
+using System.Web.Security;
 using System.Web.SessionState;
 
 namespace Company.UI
@@ -20,6 +23,7 @@ namespace Company.UI
 
         public void ProcessRequest(HttpContext context)
         {
+            
             context.Response.ContentType = "text/plain";
             context.Response.Buffer = true;
             context.Response.ExpiresAbsolute = DateTime.Now.AddDays(-1);
@@ -29,9 +33,10 @@ namespace Company.UI
             string active = HttpContext.Current.Request["action"];
             string Account = context.Request["Account"];          //账户
             string Pwd = context.Request["Pwd"];                    //密码
-            string code = context.Request["code"].ToLower();        //验证码
-            string Msg = "";
-            string UserId = "";
+            string ls_checkcode = context.Request["code"].ToLower();        //验证码
+            string ls_Msg = string.Empty;
+            string ls_dbref = string.Empty;
+
             switch (active)
             {
                 case "login"://登录
@@ -40,38 +45,64 @@ namespace Company.UI
                         string IPAddress = RequestHelper.GetIPAddress();
 
                         string ls_code = HttpContext.Current.Session["dt_session_code"].ToString().ToLower();
-                        if (code != ls_code)
+                        if (ls_checkcode != ls_code)
                         {
-                            Msg = "1";//验证码输入不正确
+                            ls_Msg = "1";//验证码输入不正确
                         }
                         else
                         {
                             User_Login user_Login = db.User_Login.Find(Account);
 
-                            string ls_name  = user_Login.Login_name;
+                            string ls_name = user_Login.Login_name;
                             string ls_pwd = user_Login.Login_password;
-                        
+
                             if (string.IsNullOrEmpty(ls_name))
                             {
-                                Msg = "4"; //账户或密码不对
+                                ls_Msg = "4"; //账户或密码不对
                             }
                             if (ls_name == Account && ls_pwd == Pwd)
                             {
                                 context.Session["Account"] = Account;
                                 context.Session["Pwd"] = Pwd;
-                                Msg = "3";//验证成功
+                                context.Session["IP"] = IPAddress;
+                                try
+                                {
+                                    #region 将用户信息存入用户信息表
+                                    User_Login_Info user_Login_Info = new User_Login_Info();
+                                    user_Login_Info.IP = IPAddress;
+                                    user_Login_Info.PassWord = Base64Helper.EncodeBase64(Pwd);
+                                    user_Login_Info.UserId = context.Request["ASP.NET_SessionId"];
+                                    user_Login_Info.UserName = Account;
+                                    user_Login_Info.DateTime = DateTime.Now.ToString();
+                                    db.User_Login_Info.Add(user_Login_Info);
+                                    db.SaveChanges();
+
+                                    #endregion
+                                }
+                                catch (Exception e)
+                                {
+
+                                }
+
+                                ls_Msg = "3";//验证成功
                             }
                         }
                     }
                     catch (Exception ex)
                     {
-                        Msg = ex.Message;
+                        ls_Msg = ex.Message;
                     }
-                    context.Response.Write(Msg);
+                    context.Response.Write(ls_Msg);
                     context.Response.End();
+
                     break;
             }
 
+
+        }
+
+        public void InsertUserInfo()
+        {
 
         }
 

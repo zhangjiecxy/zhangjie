@@ -8,6 +8,7 @@
         <EntityTypeShape EntityType="StaffModel.Staff" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="StaffModel.sysdiagrams" Width="1.5" PointX="3.75" PointY="0.75" />
         <EntityTypeShape EntityType="StaffModel.User_Login" Width="1.5" PointX="0.875" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StaffModel.User_Login_Info" Width="1.5" PointX="3.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

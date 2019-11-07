@@ -33,10 +33,21 @@
           <Property Name="Login_password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ISDelete" Type="int" />
         </EntityType>
+        <EntityType Name="User_Login_Info">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PassWord" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="IP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="StaffModelStoreContainer">
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_Login" EntityType="Self.User_Login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Login_Info" EntityType="Self.User_Login_Info" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -55,6 +66,7 @@
           <EntitySet Name="Staff" EntityType="Self.Staff" />
           <EntitySet Name="sysdiagrams" EntityType="StaffModel.sysdiagrams" />
           <EntitySet Name="User_Login" EntityType="StaffModel.User_Login" />
+          <EntitySet Name="User_Login_Info" EntityType="StaffModel.User_Login_Info" />
         </EntityContainer>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -74,6 +86,16 @@
           <Property Name="Login_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Login_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ISDelete" Type="Int32" />
+        </EntityType>
+        <EntityType Name="User_Login_Info">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassWord" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IP" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="50" />
+          <Property Name="DateTime" Type="String" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -109,6 +131,17 @@
                 <ScalarProperty Name="Login_password" ColumnName="Login_password" />
                 <ScalarProperty Name="Login_name" ColumnName="Login_name" />
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Login_Info">
+            <EntityTypeMapping TypeName="StaffModel.User_Login_Info">
+              <MappingFragment StoreEntitySet="User_Login_Info">
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

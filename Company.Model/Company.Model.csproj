@@ -78,6 +78,9 @@
     <Compile Include="User_Login.cs">
       <DependentUpon>Company.tt</DependentUpon>
     </Compile>
+    <Compile Include="User_Login_Info.cs">
+      <DependentUpon>Company.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
