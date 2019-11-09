@@ -388,6 +388,8 @@ function getAjax(url, parm, callBack) {
         data: parm,
         cache: false,
         async: false,
+        contentType: false,
+        processData: false,
         success: function (msg) {
             callBack(msg);
         }

@@ -50,7 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base64Helper.cs" />
+    <Compile Include="DataJsonHelper.cs" />
+    <Compile Include="DataTableHelper.cs" />
+    <Compile Include="HashtableHelper.cs" />
     <Compile Include="HttpHelper.cs" />
+    <Compile Include="JsonHelper.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="MySqlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

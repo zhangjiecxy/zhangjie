@@ -1,45 +1,74 @@
 ﻿@using Company.Model
+@using Webdiyer.WebControls.Mvc;
+@model  PagedList<Company.Model.Staff>
+
 @{
+    ViewBag.Title = "Staff";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Search{
     <div class="divSearchForm" id="searchToolbar">
         <form class="form-inline form-search" method="post" style="margin-bottom:5px">
             <div class="form-group">
-                <label class="control-label">检索词</label>
-                <input class="input-sm form-control" name="Filter" />
+                <label class="control-label">姓名</label>
+                <input class="input-sm form-control" id="username" />
             </div>
             @Html.Partial("~/Views/Shared/_searchButtons.cshtml")
         </form>
     </div>
 }
-<table class="table">
-    <thead>
-        <tr>
-            @*<th>ID</th>*@
-            <th>姓名</th>
-            <th>年龄</th>
-            <th>性别</th>
-            <th>操作</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!--遍历Action方法 设置给viewdata的数据集合，生成html代码-->
-        @foreach (Staff staff in ViewData["datalist"] as List<Staff>)
-        {
-            <tr>
-                <td>@staff.Name</td>
-                <td>@staff.Age </td>
-                <td>@(staff.Sex=="1"?"男":"女") </td>                
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = staff.StaffId }) |
-                    @Html.ActionLink("Details", "Details", new { id = staff.StaffId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = staff.StaffId })
-                </td>
-            </tr>
+@section Scripts{
+
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript">
+        //查询
+        function Search() {
+              //url：请求地址  
+         var _url = "@Url.Action("IndexResult", "Staff")";
+            layui.use('table', function () {
+                var table = layui.table;
+                table.render({
+                    elem: '#demo'
+                    , skin: 'line'
+                    , even:true
+                    , height: "full-200"
+                    , method: 'post'
+                    , url: _url //数据接口
+                    , contentType: 'application/json'
+                    , parseData: function (res) {
+                        console.log(res)
+                        return {
+                            "code": res.code,
+                            "msg": res.msg,
+                            "count": res.count,
+                            "data": res.data
+                        };
+                    }
+                    , page: true //开启分页
+                    , cols:
+                        [
+                            [ //表头
+                                //{ field: 'StaffId', title: 'ID', width: 80, sort: true, fixed: 'left'}
+                                 { field: 'Name', title: '用户名', width:"30%"  }
+                                , { field: 'Age', title: '年龄', width: "20%", sort: true }
+                                , { field: 'Sex', title: '性别', width: "20%" }
+                                , { fixed: 'right', width: 250, align: 'center', toolbar: '#barDemo' } //这里的toolbar值是模板元素的选择器
+                            ]
+                        ]
+                });
+            });
         }
+    </script>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+}
+<table id="demo" lay-filter="test"></table>
 
 
 
-    </tbody>
-</table>
+
+
+

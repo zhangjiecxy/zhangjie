@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Common;
+using Company.IBLL;
+using Company.Model;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Company.IBLL;
-using Company.Model;
+using Webdiyer.WebControls.Mvc;
 
 namespace Company.UI
 {
@@ -17,17 +17,36 @@ namespace Company.UI
         private CompanyEntities db = new CompanyEntities();
 
         private IStaffService StaffService = BLLContainer.Container.Resolve<IStaffService>();
-        // GET: Staff
+
+        
         public ActionResult Index()
         {
-            List<Model.Staff> staffs = db.Staff.Where(p => p.StaffId != "").ToList();
-
-            //return View(db.Staff.ToList());
-
-            //将数据集合传给视图
-            ViewData["datalist"] = staffs;
             return View();
         }
+
+        [HttpPost]
+        public JsonResult IndexResult()
+        {
+            List<Staff> list_staff = new List<Staff>();
+            string lq_name = Request.Form["username"];
+            if (string.IsNullOrEmpty(lq_name))
+            {
+                list_staff = db.Staff.Where(p => p.StaffId != "").ToList();
+            }
+            if (!string.IsNullOrEmpty(lq_name))
+            {
+                list_staff = db.Staff.Where(p => p.Name.Contains(lq_name)).ToList();
+            }
+            
+            DataJsonHelper data = new DataJsonHelper();
+            data.code = 0;
+            data.msg = "";
+            data.data = list_staff;
+            data.count = list_staff.Count();
+            return Json(data);
+        }
+
+
 
         // GET: Staff/Details/5
         public ActionResult Details(int? id)
