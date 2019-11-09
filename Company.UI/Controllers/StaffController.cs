@@ -24,11 +24,19 @@ namespace Company.UI
             return View();
         }
 
-        [HttpPost]
-        public JsonResult IndexResult()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="page">当前页码</param>
+        /// <param name="limit">每页数据量</param>
+        /// <returns></returns>
+        [HttpPost]        
+        public JsonResult IndexResult(int page=1,int limit=30)
         {
             List<Staff> list_staff = new List<Staff>();
-            string lq_name = Request.Form["username"];
+            string lq_name = Request["username"];            
+            //page = int.Parse(Request["page"]);
+            //limit = int.Parse(Request["limit"]);
             if (string.IsNullOrEmpty(lq_name))
             {
                 list_staff = db.Staff.Where(p => p.StaffId != "").ToList();
@@ -37,13 +45,16 @@ namespace Company.UI
             {
                 list_staff = db.Staff.Where(p => p.Name.Contains(lq_name)).ToList();
             }
-            
-            DataJsonHelper data = new DataJsonHelper();
-            data.code = 0;
-            data.msg = "";
-            data.data = list_staff;
-            data.count = list_staff.Count();
-            return Json(data);
+            var data = list_staff.Skip((page - 1) * limit).Take(limit);
+
+            PagedList<Staff> list_paged = new PagedList<Staff>(data, page, limit, list_staff.Count);
+
+            DataJsonHelper datajson = new DataJsonHelper();
+            datajson.code = 0;
+            datajson.msg = "";
+            datajson.data = list_paged;
+            datajson.count = list_staff.Count();
+            return Json(datajson);
         }
 
 
