@@ -495,7 +495,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Staff\Create.cshtml" />
+    <Content Include="Views\Staff\CreateOrEdit.cshtml" />
     <Content Include="Views\Staff\Delete.cshtml" />
     <Content Include="Views\Staff\Details.cshtml" />
     <Content Include="Views\Staff\Edit.cshtml" />

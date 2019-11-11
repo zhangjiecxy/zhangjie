@@ -3,7 +3,7 @@
 
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "CreateOrEdit";
     Layout = null;
 }
 @Html.Partial("~/Views/Shared/_header.cshtml")
@@ -12,11 +12,13 @@
         var form = layui.form;
         //监听提交
         form.on('submit(formDemo)', function (data) { 
-            getAjax("/Staff/CreateOrEdit", "json=" + JSON.stringify(data.field), function (rt) {                       
-                if (JSON.parse(rt)=="ok") {
+            getAjax("/Staff/CreateOrEditResult", "json=" + JSON.stringify(data.field), function (rt) {           
+                if (httpRtn.code==0) {
                     layer.msg("提交成功！");
                     $("#funcbar").attr("style", "display:none")
+                    return true;
                 }
+                layer.msg(httpRtn.msg);                
             })
             return false;
         });

@@ -36,8 +36,6 @@ namespace Company.UI
         {
             List<Staff> list_staff = new List<Staff>();
             string lq_name = Request["username"];            
-            //page = int.Parse(Request["page"]);
-            //limit = int.Parse(Request["limit"]);
             if (string.IsNullOrEmpty(lq_name))
             {
                 list_staff = db.Staff.Where(p => p.StaffId != "").ToList();
@@ -76,16 +74,17 @@ namespace Company.UI
         }
 
         // GET: Staff/Create
-        public ActionResult Create()
+        public ActionResult CreateOrEdit()
         {
             return View();
         }
 
         [HttpPost]
-        public JsonResult CreateOrEdit()
+        public JsonResult CreateOrEditResult()
         {
             string msg = string.Empty;
             string json = Request["json"];
+            HttpReturn httpReturn = new HttpReturn();
 
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             Staff staff = serializer.Deserialize<Staff>(json);
@@ -95,16 +94,18 @@ namespace Company.UI
             try
             {
                 if (db.SaveChanges() > 0)
-                    msg = "ok";
-                else
-                    msg = "err";
+                {
+                    httpReturn.msg = "";
+                    httpReturn.code = 0;
+                }
             }
             catch (Exception e)
             {
-                msg = e.Message;
+                httpReturn.code = 1;
+                httpReturn.msg = e.Message;
             }
 
-            return Json(msg);
+            return Json(httpReturn);
         }
         // POST: Staff/Create
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
