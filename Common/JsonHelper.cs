@@ -3,6 +3,8 @@ using System.Text;
 using System.Reflection;
 using System.Data;
 using System.Collections;
+using System.Runtime.Serialization.Json;
+using System.IO;
 
 namespace Common
 {
@@ -11,6 +13,7 @@ namespace Common
     /// </summary>
     public class JsonHelper
     {
+
         /// <summary>
         /// 对象转Json
         /// </summary>

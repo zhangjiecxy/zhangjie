@@ -1,12 +1,14 @@
 ﻿using Common;
 using Company.IBLL;
 using Company.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using Webdiyer.WebControls.Mvc;
 
 namespace Company.UI
@@ -18,7 +20,6 @@ namespace Company.UI
 
         private IStaffService StaffService = BLLContainer.Container.Resolve<IStaffService>();
 
-        
         public ActionResult Index()
         {
             return View();
@@ -80,6 +81,31 @@ namespace Company.UI
             return View();
         }
 
+        [HttpPost]
+        public JsonResult CreateOrEdit()
+        {
+            string msg = string.Empty;
+            string json = Request["json"];
+
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            Staff staff = serializer.Deserialize<Staff>(json);
+            staff.StaffId= Guid.NewGuid().ToString();
+            db.Staff.Add(staff);
+            db.Entry(staff).State = EntityState.Added;
+            try
+            {
+                if (db.SaveChanges() > 0)
+                    msg = "ok";
+                else
+                    msg = "err";
+            }
+            catch (Exception e)
+            {
+                msg = e.Message;
+            }
+
+            return Json(msg);
+        }
         // POST: Staff/Create
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。

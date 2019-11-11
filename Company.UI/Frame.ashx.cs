@@ -1,14 +1,7 @@
-﻿
-using Abp.Runtime.Security;
-using baseclass;
-using Common;
+﻿using Common;
 using Company.Model;
 using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Web;
-using System.Web.Mvc;
-using System.Web.Security;
 using System.Web.SessionState;
 
 namespace Company.UI
@@ -23,7 +16,6 @@ namespace Company.UI
 
         public void ProcessRequest(HttpContext context)
         {
-            
             context.Response.ContentType = "text/plain";
             context.Response.Buffer = true;
             context.Response.ExpiresAbsolute = DateTime.Now.AddDays(-1);
@@ -31,9 +23,9 @@ namespace Company.UI
             context.Response.AddHeader("cache-control", "");
             context.Response.CacheControl = "no-cache";
             string active = HttpContext.Current.Request["action"];
-            string Account = context.Request["Account"];          //账户
-            string Pwd = context.Request["Pwd"];                    //密码
-            string ls_checkcode = context.Request["code"].ToLower();        //验证码
+            string Account = context.Request["Account"]==null?"": context.Request["Account"];          //账户
+            string Pwd = context.Request["Pwd"]==null?"": context.Request["Pwd"];                    //密码
+            string ls_checkcode = context.Request["code"]==null?"": context.Request["code"].ToLower();        //验证码
             string ls_Msg = string.Empty;
             string ls_dbref = string.Empty;
 
@@ -53,8 +45,8 @@ namespace Company.UI
                         {
                             User_Login user_Login = db.User_Login.Find(Account);
 
-                            string ls_name = user_Login.Login_name;
-                            string ls_pwd = user_Login.Login_password;
+                            string ls_name = user_Login == null ? null : user_Login.Login_name;
+                            string ls_pwd = user_Login == null ? null : user_Login.Login_password;
 
                             if (string.IsNullOrEmpty(ls_name))
                             {
@@ -97,8 +89,6 @@ namespace Company.UI
 
                     break;
             }
-
-
         }
 
         public void InsertUserInfo()
