@@ -76,6 +76,12 @@ namespace Company.UI
         // GET: Staff/Create
         public ActionResult CreateOrEdit()
         {
+            string staffid = Request["id"];
+            if (string.IsNullOrEmpty(staffid))
+            {
+                return View();
+            }
+
             return View();
         }
 

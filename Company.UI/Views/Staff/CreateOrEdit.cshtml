@@ -10,6 +10,8 @@
 <script type="text/javascript">
     layui.use('form', function () {
         var form = layui.form;
+        var a = layer.title();
+        console.log(a)
         //监听提交
         form.on('submit(formDemo)', function (data) { 
             getAjax("/Staff/CreateOrEditResult", "json=" + JSON.stringify(data.field), function (rt) {           
