@@ -495,10 +495,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Staff\CreateOrEdit.cshtml" />
-    <Content Include="Views\Staff\Delete.cshtml" />
-    <Content Include="Views\Staff\Details.cshtml" />
-    <Content Include="Views\Staff\Edit.cshtml" />
+    <Content Include="Views\Staff\_CreateOrEdit.cshtml" />
     <Content Include="Views\Staff\Index.cshtml" />
     <Content Include="Views\Shared\_searchButtons.cshtml" />
     <Content Include="Views\Shared\_header.cshtml" />

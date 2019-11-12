@@ -67,7 +67,7 @@
                         layer.open({
                             title: '查看'
                             , type: 2
-                            , content: '/Staff/CreateOrEdit?id=' + data.StaffId
+                            , content: '/Staff/CreateOrEdit?action=detail&id=' + data.StaffId
                             , area: ['50%', '50%']
                             , maxmin: true
                             , shadeClose: true
@@ -75,9 +75,34 @@
                         });
                         break;
                     case "edit":
-
+                        layer.open({
+                            title: '编辑'
+                            , type: 2
+                            , content: '/Staff/CreateOrEdit?action=edit&id=' + data.StaffId
+                            , area: ['50%', '50%']
+                            , maxmin: true
+                            , shadeClose: true
+                            , skin: "layui-layer-molv"
+                        });
                         break;
                     case "del":
+                        layer.confirm('确定要删除么？', {
+                            btn: ['是', '否'] //按钮
+                        }, function () {
+                            getAjax("/Staff/DeleteResult", "id=" + data.StaffId, function (rt) {
+                                var httpRtn = JSON.parse(rt);
+                                if (httpRtn.code == 0) {
+                                    layer.msg('已删除', { icon: 1 });
+                                    Search();
+                                    return true;
+                                }
+                                layer.msg(httpRtn.msg);
+                            })
+                        }, function () {
+
+                            });    
+
+
 
                         break;
                     default:
@@ -97,22 +122,22 @@
            layer.open({
                 title: '新增'
                 ,type: 2
-               , content: '/Staff/CreateOrEdit'
+               , content: '/Staff/CreateOrEdit?action=create'
                 ,area: ['50%', '50%']
                , maxmin: true
                , shadeClose:true
                , skin: "layui-layer-molv"
-               //, cancel: function (index, layero) { //关闭窗口时
-               //    layer.confirm('确定要关闭么？', {
-               //        btn: ['是', '否'] //按钮
-               //    }, function () {
-               //        layer.msg('已关闭', { icon: 1 });
-               //        layer.close(index)
-               //    }, function () {
-                       
-               //    });                  
-               //    return false; 
-               //}
+               , cancel: function (index, layero) { //关闭窗口时
+                   //layer.confirm('确定要关闭么？', {
+                   //    btn: ['是', '否'] //按钮
+                   //}, function () {
+                   //    layer.msg('已关闭', { icon: 1 });
+                   //    layer.close(index)
+                   //}, function () {
+
+                   //});
+                   return false; 
+               }
             });
             //弹出即全屏
             //layer.full(index);

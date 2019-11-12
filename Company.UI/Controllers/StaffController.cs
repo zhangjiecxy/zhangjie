@@ -31,14 +31,14 @@ namespace Company.UI
         /// <param name="page">当前页码</param>
         /// <param name="limit">每页数据量</param>
         /// <returns></returns>
-        [HttpPost]        
+        [HttpPost]
         public JsonResult IndexResult(int page=1,int limit=30)
         {
             List<Staff> list_staff = new List<Staff>();
             string lq_name = Request["username"];            
             if (string.IsNullOrEmpty(lq_name))
             {
-                list_staff = db.Staff.Where(p => p.StaffId != "").ToList();
+                list_staff = db.Staff.Where(p => p.StaffId != "").OrderByDescending(p=>p.Name).ToList();
             }
             if (!string.IsNullOrEmpty(lq_name))
             {
@@ -57,32 +57,22 @@ namespace Company.UI
         }
 
 
-
-        // GET: Staff/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Staff staff = db.Staff.Find(id);
-            if (staff == null)
-            {
-                return HttpNotFound();
-            }
-            return View(staff);
-        }
-
-        // GET: Staff/Create
+        
         public ActionResult CreateOrEdit()
         {
+            Staff staff = new Staff();
             string staffid = Request["id"];
-            if (string.IsNullOrEmpty(staffid))
+            string action = Request["action"];
+            if (!string.IsNullOrEmpty(action))
             {
-                return View();
+                ViewBag.action = action;
             }
-
-            return View();
+            if (!string.IsNullOrEmpty(staffid))
+            {
+                List<Staff> lstaff = new List<Staff>();
+                staff = db.Staff.Where(p => p.StaffId.Equals(staffid)).ToList()[0];
+            }
+            return View("_CreateOrEdit",staff);//查看、编辑
         }
 
         [HttpPost]
@@ -95,8 +85,7 @@ namespace Company.UI
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             Staff staff = serializer.Deserialize<Staff>(json);
             staff.StaffId= Guid.NewGuid().ToString();
-            db.Staff.Add(staff);
-            db.Entry(staff).State = EntityState.Added;
+            db.Staff.Add(staff);           
             try
             {
                 if (db.SaveChanges() > 0)
@@ -113,79 +102,40 @@ namespace Company.UI
 
             return Json(httpReturn);
         }
-        // POST: Staff/Create
-        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
-        // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StaffId,Name,Age,Sex")] Staff staff)
+        public JsonResult DeleteResult()
         {
-            if (ModelState.IsValid)
+            string id = Request["id"];
+            Staff staff = new Staff();
+            HttpReturn httpReturn = new HttpReturn();
+
+            if (!string.IsNullOrEmpty(id))
             {
-                db.Staff.Add(staff);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                staff = db.Staff.Find(id);
+                if (staff!=null)
+                {
+                    db.Staff.Remove(staff);
+                }
             }
 
-            return View(staff);
+            try
+            {
+                if (db.SaveChanges() > 0)
+                {
+                    httpReturn.msg = "";
+                    httpReturn.code = 0;
+                }
+            }
+            catch (Exception e)
+            {
+                httpReturn.code = 1;
+                httpReturn.msg = e.Message;
+            }
+
+            return Json(httpReturn);            
         }
 
-        // GET: Staff/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Staff staff = db.Staff.Find(id);
-            if (staff == null)
-            {
-                return HttpNotFound();
-            }
-            return View(staff);
-        }
-
-        // POST: Staff/Edit/5
-        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
-        // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StaffId,Name,Age,Sex")] Staff staff)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(staff).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(staff);
-        }
-
-        // GET: Staff/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Staff staff = db.Staff.Find(id);
-            if (staff == null)
-            {
-                return HttpNotFound();
-            }
-            return View(staff);
-        }
-
-        // POST: Staff/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Staff staff = db.Staff.Find(id);
-            db.Staff.Remove(staff);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {
