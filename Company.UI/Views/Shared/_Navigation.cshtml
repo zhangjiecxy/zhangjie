@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "_Navigation";
+    Layout = null;
+}
+
+<script>
+    //监听选中页签添加样式
+    layui.config({
+        base: '../Layer/'   //navbar组件js所在目录
+    }).use('navbar', function () {
+        getAjax("/Home/GetMenuResult", "", function (rt) {
+            var httpRtn = JSON.parse(rt);
+            console.log(httpRtn)
+            var navbar = layui.navbar();
+            navbar.set({
+                elem: '#nav',
+                data: httpRtn   //数据源
+            });
+            navbar.render();
+            //下面的部分不是必须的
+            //navbar.on('click(menu)', function (data) {
+            //    console.log(data.elem);
+            //    console.log(data.field.title);//标题
+            //    console.log(data.field.icon);//图标
+            //    console.log(data.field.href);//调转地址            
+            //});
+
+            //给选中的页签添加选中样式（解决刷新失效问题）
+            var url = window.location.href.replace("//", "");
+            var relUrl = url.substring(url.lastIndexOf("/") + 1);
+            //去掉参数部分
+            if (relUrl.indexOf("?") != -1) {
+                relUrl = relUrl.split("?")[0];
+            }
+            $("#leftNavbar a").each(function () {
+                var that = this;
+                if ($(that).attr("href") == relUrl) {
+                    $(that).parent().addClass("layui-this");
+                    $(that).parents("li:eq(0)").addClass("layui-nav-itemed");
+                    var nodes = $(that).parents("li:eq(0)").find("a .layui-nav-more");
+                    if (nodes.length > 0) {
+                        nodes.each(function () {
+                            if ($(this).parents("dd:eq(0)").find("[href='" + relUrl +
+                                "']").length > 0) {
+                                $(this).parent().parent().addClass("layui-nav-itemed");
+                            }
+                        });
+                    }
+                }
+            });
+        })
+        
+
+    });
+</script>    
+
+<div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+        <ul class="layui-nav layui-nav-tree" id="nav" lay-filter="menu"></ul>
+    </div>
+</div>

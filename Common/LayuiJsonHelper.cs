@@ -9,7 +9,7 @@ namespace Common
     /// <summary>
     /// layerui需要返回的特定格式
     /// </summary>
-   public class DataJsonHelper
+   public class LayuiJsonHelper
     {
         /// <summary>
         /// 返回值：0（正常） 1（错误）

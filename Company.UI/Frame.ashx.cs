@@ -23,7 +23,7 @@ namespace Company.UI
             context.Response.AddHeader("cache-control", "");
             context.Response.CacheControl = "no-cache";
             string active = HttpContext.Current.Request["action"];
-            string Account = context.Request["Account"]==null?"": context.Request["Account"];          //账户
+            string Account = context.Request["Account"]==null?"": context.Request["Account"].ToLower();          //账户
             string Pwd = context.Request["Pwd"]==null?"": context.Request["Pwd"];                    //密码
             string ls_checkcode = context.Request["code"]==null?"": context.Request["code"].ToLower();        //验证码
             string ls_Msg = string.Empty;

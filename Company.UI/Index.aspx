@@ -340,7 +340,7 @@
                         
                     } else {
                         
-                        alert(rs);
+                        layer.msg(rs);
                         // window.location.href = window.location.href.replace('#', '');
                     }
                 });

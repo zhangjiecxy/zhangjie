@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base64Helper.cs" />
-    <Compile Include="DataJsonHelper.cs" />
+    <Compile Include="LayuiJsonHelper.cs" />
     <Compile Include="DataTableHelper.cs" />
     <Compile Include="ExtJsonHelper.cs" />
     <Compile Include="HashtableHelper.cs" />

@@ -22,7 +22,7 @@ namespace Company.UI
 
         public ActionResult Index()
         {
-            return View();
+            return PartialView();
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Company.UI
 
             PagedList<Staff> list_paged = new PagedList<Staff>(data, page, limit, list_staff.Count);
 
-            DataJsonHelper datajson = new DataJsonHelper();
+            LayuiJsonHelper datajson = new LayuiJsonHelper();
             datajson.code = 0;
             datajson.msg = "";
             datajson.data = list_paged;

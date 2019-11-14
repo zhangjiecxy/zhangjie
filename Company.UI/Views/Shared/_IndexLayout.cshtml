@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "_IndexLayout";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    @Html.Partial("_header")
+    <title>@ViewBag.Title</title>
+
+    @RenderSection("Styles", false)
+</head>
+<body>
+    <!-- 内容主体区域 -->
+    @RenderSection("Search", false)
+    @RenderBody()
+    @RenderSection("Scripts", false)
+</body>
+</html>

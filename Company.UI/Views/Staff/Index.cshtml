@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = "Staff";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_IndexLayout.cshtml";
 }
 @section Search{
     <div class="divSearchForm" id="searchToolbar">
@@ -24,10 +24,11 @@
             var _url = "@Url.Action("IndexResult", "Staff")" + "?username=" + $("#username").val();
             var options = {
                 elem: '#demo'
+                ,title:"123"
                 , skin: 'line' //皮肤
                 , even: true     //是否开启隔行颜色
                 , toolbar:"#create"
-                , height: "full-200"
+                , height: "full"
                 , method: 'post'
                 , url: _url //数据接口
                 , contentType: 'application/json'

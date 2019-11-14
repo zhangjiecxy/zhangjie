@@ -1,0 +1,62 @@
+[
+  {
+    "id": "as",
+    "title": "首页",
+    "icon": "layui-icon layui-icon-home",
+    "spread": true,
+    "href": ""
+  },
+  {
+    "id": "gf",
+    "title": "一级导航",
+    "icon": "layui-icon layui-icon-home",
+    "spread": true,
+    "href": "",
+    "children": [
+      {
+        "id": "bvd",
+        "title": "二级导航",
+        "icon": "",
+        "href": "",
+        "spread": true,
+        "children": [
+          {
+            "id": "ads",
+            "title": "三级导航",
+            "icon": " ",
+            "href": ""
+          },
+          {
+            "id": "nubig",
+            "title": "三级导航",
+            "icon": " ",
+            "href": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ty",
+    "title": "一级导航",
+    "icon": "fa-stop-circle",
+    "spread": true,
+    "href": ""
+  },
+  {
+    "id": "tytj",
+    "title": "一级导航",
+    "icon": "fa-stop-circle",
+    "spread": true,
+    "href": ""
+
+  },
+  {
+    "id": "eht",
+    "title": "一级导航",
+    "icon": "fa-stop-circle",
+    "spread": true,
+    "href": ""
+
+  }
+]

@@ -300,6 +300,7 @@
     <Content Include="ErrorPage\404.aspx" />
     <Content Include="ErrorPage\Browser_Not_Support.aspx" />
     <Content Include="Index.aspx" />
+    <Content Include="Staff\common.js" />
     <Content Include="Layer\css\layui.css" />
     <Content Include="Layer\css\layui.mobile.css" />
     <Content Include="Layer\css\modules\code.css" />
@@ -310,6 +311,7 @@
     <Content Include="Layer\css\modules\layer\default\loading-0.gif" />
     <Content Include="Layer\css\modules\layer\default\loading-1.gif" />
     <Content Include="Layer\css\modules\layer\default\loading-2.gif" />
+    <Content Include="Layer\navbar.js" />
     <Content Include="Layer\font\iconfont.svg" />
     <Content Include="Layer\images\face\0.gif" />
     <Content Include="Layer\images\face\1.gif" />
@@ -456,6 +458,7 @@
     <Content Include="Layer\font\iconfont.woff" />
     <Content Include="Layer\font\iconfont.woff2" />
     <Content Include="Frame.ashx" />
+    <Content Include="Layer\nav2.json" />
     <None Include="Properties\PublishProfiles\Company发布不带IP（temp）.pubxml" />
     <None Include="Properties\PublishProfiles\Company发布带IP（tempfortest）.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -500,6 +503,8 @@
     <Content Include="Views\Shared\_searchButtons.cshtml" />
     <Content Include="Views\Shared\_header.cshtml" />
     <Content Include="VerifyCode.ashx" />
+    <Content Include="Views\Shared\_Navigation.cshtml" />
+    <Content Include="Views\Shared\_IndexLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
