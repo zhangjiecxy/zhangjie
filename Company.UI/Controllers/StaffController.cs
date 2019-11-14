@@ -18,8 +18,6 @@ namespace Company.UI
         //数据上下文对象
         private CompanyEntities db = new CompanyEntities();
 
-        private IStaffService StaffService = BLLContainer.Container.Resolve<IStaffService>();
-
         public ActionResult Index()
         {
             return PartialView();
@@ -34,30 +32,33 @@ namespace Company.UI
         [HttpPost]
         public JsonResult IndexResult(int page=1,int limit=30)
         {
-            List<Staff> list_staff = new List<Staff>();
+            List<Staff> staff = new List<Staff>();
             string lq_name = Request["username"];            
             if (string.IsNullOrEmpty(lq_name))
             {
-                list_staff = db.Staff.Where(p => p.StaffId != "").OrderByDescending(p=>p.Name).ToList();
+                staff = db.Staff.Where(p => p.StaffId != "").OrderByDescending(p=>p.Name).ToList();
             }
             if (!string.IsNullOrEmpty(lq_name))
             {
-                list_staff = db.Staff.Where(p => p.Name.Contains(lq_name)).ToList();
+                staff = db.Staff.Where(p => p.Name.Contains(lq_name)).ToList();
             }
-            var data = list_staff.Skip((page - 1) * limit).Take(limit);
+            var data = staff.Skip((page - 1) * limit).Take(limit);
 
-            PagedList<Staff> list_paged = new PagedList<Staff>(data, page, limit, list_staff.Count);
+            PagedList<Staff> Ipaged = new PagedList<Staff>(data, page, limit, staff.Count);
 
             LayuiJsonHelper datajson = new LayuiJsonHelper();
             datajson.code = 0;
             datajson.msg = "";
-            datajson.data = list_paged;
-            datajson.count = list_staff.Count();
+            if (staff.Count() > 10)
+                datajson.data = Ipaged;
+            else
+                datajson.data = staff;
+            datajson.count = staff.Count();
             return Json(datajson);
         }
 
 
-        
+
         public ActionResult CreateOrEdit()
         {
             Staff staff = new Staff();

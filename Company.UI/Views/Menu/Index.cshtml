@@ -1,30 +1,27 @@
 ﻿@using Webdiyer.WebControls.Mvc;
-@model  PagedList<Company.Model.Staff>
+@model  PagedList<Company.Model.Menu>
 
 @{
-    ViewBag.Title = "Staff";
+    ViewBag.Title = "Menu";
     Layout = "~/Views/Shared/_IndexLayout.cshtml";
 }
 @section Search{
     <div class="divSearchForm" id="searchToolbar">
         <form class="form-inline form-search" method="post" style="margin-bottom:5px">
             <div class="form-group">
-                <label class="control-label">姓名</label>
-                <input class="input-sm form-control" id="username" />
+                <label class="control-label">标题</label>
+                <input class="input-sm form-control" id="title" />
             </div>
             @Html.Partial("~/Views/Shared/_searchButtons.cshtml")
         </form>
     </div>
 }
 @section Scripts{
-
-    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
     <script type="text/javascript">
         function rtOption() {
-            var _url = "@Url.Action("IndexResult", "Staff")" + "?username=" + $("#username").val();
+            var _url = "@Url.Action("IndexResult", "Menu")" + "?title=" + $("#title").val();
             var options = {
-                elem: '#demo'
-                ,title:"123"
+                elem: '#demo'                
                 , skin: 'line' //皮肤
                 , even: true     //是否开启隔行颜色
                 , toolbar:"#create"
@@ -32,7 +29,7 @@
                 , method: 'post'
                 , url: _url //数据接口
                 , contentType: 'application/json'
-                , parseData: function (res) { 
+                , parseData: function (res) {
                     console.log(res)
                     return {
                         "code": res.code,
@@ -45,11 +42,15 @@
                 , cols:
                     [
                         [ //表头
-                            { field: 'StaffId', title: 'ID', width: 80, sort: true, fixed: 'left', hide: true}
-                            ,{ field: 'Name', title: '用户名', width: "30%" }
-                            , { field: 'Age', title: '年龄', width: "20%", sort: true }
-                            , { field: 'Sex', title: '性别', width: "20%", templet: '#filteSex' } //templet 模版选择器
-                            , { fixed: 'right', width: 250, align: 'center', toolbar: '#barOperate' } //这里的toolbar值是模板元素的选择器
+                            { field: 'GUID', title: 'ID', width: 80, sort: true, fixed: 'left', hide: true}
+                            , { field: 'Title', title: '标题', width: "20%"}
+                            , { field: 'Icon', title: '图片', width: "20%" }
+                            , { field: 'Href', title: '路径', width: "20%" }
+                            , { field: 'ParentId', title: '父节点', width: "20%" ,hide: true}
+                            , { field: 'OperateTime', title: '操作时间', width: "20%", hide: true}
+                            , { field: 'Operater', title: '操作员', width: "20%", hide: true}
+                            , { field: 'Seq', title: '排序', width: "10%", sort: true} 
+                            , { fixed: 'right', width: "20%", align: 'center', toolbar: '#barOperate' } //这里的toolbar值是模板元素的选择器
                         ]
                     ]
             }
@@ -64,22 +65,11 @@
                 console.log(data)
                 var layEvent = obj.event;//点击事件
                 switch (layEvent) {
-                    case "detail":
-                        layer.open({
-                            title: '查看'
-                            , type: 2
-                            , content: '/Staff/CreateOrEdit?action=detail&id=' + data.StaffId
-                            , area: ['50%', '50%']
-                            , maxmin: true
-                            , shadeClose: true
-                            , skin: "layui-layer-molv"
-                        });
-                        break;
                     case "edit":
                         layer.open({
                             title: '编辑'
                             , type: 2
-                            , content: '/Staff/CreateOrEdit?action=edit&id=' + data.StaffId
+                            , content: '/Menu/CreateOrEdit?action=edit&id=' + data.GUID
                             , area: ['50%', '50%']
                             , maxmin: true
                             , shadeClose: true
@@ -90,7 +80,7 @@
                         layer.confirm('确定要删除么？', {
                             btn: ['是', '否'] //按钮
                         }, function () {
-                            getAjax("/Staff/DeleteResult", "id=" + data.StaffId, function (rt) {
+                            getAjax("/Menu/DeleteResult", "id=" + data.GUID, function (rt) {
                                 var httpRtn = JSON.parse(rt);
                                 if (httpRtn.code == 0) {
                                     layer.msg('已删除', { icon: 1 });
@@ -101,7 +91,7 @@
                             })
                         }, function () {
 
-                            });    
+                            });
                         break;
                     default:
                 }
@@ -125,16 +115,8 @@
                , maxmin: true
                , shadeClose:true
                , skin: "layui-layer-molv"
-               , cancel: function (index, layero) { //关闭窗口时
-                   //layer.confirm('确定要关闭么？', {
-                   //    btn: ['是', '否'] //按钮
-                   //}, function () {
-                   //    layer.msg('已关闭', { icon: 1 });
-                   //    layer.close(index)
-                   //}, function () {
-
-                   //});
-                   return false; 
+               , cancel: function (index, layero) { 
+                   return false;
                }
             });
             //弹出即全屏
@@ -143,25 +125,11 @@
 
     </script>
     <script type="text/html" id="barOperate">
-        <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
     <script type="text/html" id="create">
         <a class="layui-btn layui-btn-xs" lay-event="create" onclick="Create()">新增</a>
     </script>
-    <script type="text/html" id="filteSex">
-        {{#  if(d.Sex < 1||d.Sex=='女'){ }}
-        {{"女"}}
-        {{#  } else { }}
-        {{"男"}}
-        {{#  } }}
-    </script>
 }
-<table id="demo" lay-filter="table"></table>
-
-
-
-
-
-
+<table id="demo" lay-filter="table" ></table>
