@@ -143,12 +143,12 @@
 
     </script>
     <script type="text/html" id="barOperate">
-        <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
-        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        <button class="layui-btn layui-btn-sm layui-btn-radius" lay-event="detail"><i class="layui-icon layui-icon-search"></i>查看</button>
+        <button class="layui-btn layui-btn-sm layui-btn-radius" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</button>
+        <button class="layui-btn layui-btn-danger layui-btn-sm layui-btn-radius" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</button>
     </script>
     <script type="text/html" id="create">
-        <a class="layui-btn layui-btn-xs" lay-event="create" onclick="Create()">新增</a>
+        <button class="layui-btn layui-btn-sm layui-btn-radius"  lay-event="create" onclick="Create()"><i class="layui-icon layui-icon-add-1"></i>新增</button>
     </script>
     <script type="text/html" id="filteSex">
         {{#  if(d.Sex < 1||d.Sex=='女'){ }}

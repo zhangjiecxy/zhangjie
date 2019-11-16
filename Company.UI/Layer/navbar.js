@@ -198,7 +198,7 @@ layui.define(['element', 'common'], function (exports) {
                 ulHtml += '<li class="layui-nav-item">';
             }
             if (data[i].children !== undefined && data[i].children !== null && data[i].children.length > 0) {
-                ulHtml += '<a href="javascript:;" style="text-decoration: none" class="' + data[i].icon + '" id="' + data[i].id + '"> ' + data[i].title;
+                ulHtml += '<a Href="javascript:;" style="text-decoration: none" class="' + data[i].Icon + '" id="' + data[i].id + '"> ' + data[i].Title;
                 ulHtml += '<span class="layui-nav-more"></span>';
                 ulHtml += '</a>';
                 ulHtml += '<dl class="layui-nav-child">';
@@ -208,7 +208,7 @@ layui.define(['element', 'common'], function (exports) {
                     if (data[i].children[j].children !== undefined && data[i].children[j].children !== null && data[i].children[j].children.length > 0) {
                         ulHtml += '<dd>';
 
-                        ulHtml += '<a href="javascript:;" style="text-decoration: none" class="' + data[i].children[j].icon + '" id="' + data[i].children[j].id+'"> ' + data[i].children[j].title;
+                        ulHtml += '<a Href="javascript:;" style="text-decoration: none" class="' + data[i].children[j].Icon + '" id="' + data[i].children[j].id+'"> ' + data[i].children[j].Title;
                         ulHtml += '<span class="layui-nav-more"></span>';
                         ulHtml += '</a>';
                         //三级菜单
@@ -216,32 +216,32 @@ layui.define(['element', 'common'], function (exports) {
                         var grandsonNodes = data[i].children[j].children;
                         for (var k = 0; k < grandsonNodes.length; k++) {
                             ulHtml += '<dd>';
-                            ulHtml += '<a href="' + grandsonNodes[k].href + '" style="text-decoration: none" class="' + data[i].children[j].icon + '" target="index" id="' + grandsonNodes[k].id+'"> ' + grandsonNodes[k].title + '</a>';
+                            ulHtml += '<a Href="' + grandsonNodes[k].Href + '" style="text-decoration: none" class="' + data[i].children[j].Icon + '" target="index" id="' + grandsonNodes[k].id+'"> ' + grandsonNodes[k].Title + '</a>';
                             ulHtml += '</dd>';
                         }
                         ulHtml += '</dl>';
                         ulHtml += '</dd>';
                     } else {
                         ulHtml += '<dd>';
-                        ulHtml += '<a href="' + data[i].children[j].href + '" style="text-decoration: none" class="' + data[i].children[j].icon + '" target="index" id="' + data[i].children[j].id+'"> ' + data[i].children[j].title;
+                        ulHtml += '<a Href="' + data[i].children[j].Href + '" style="text-decoration: none" class="' + data[i].children[j].Icon + '" target="index" id="' + data[i].children[j].id+'"> ' + data[i].children[j].Title;
                         ulHtml += '</a>';
                         ulHtml += '</dd>';
                     }
-                    //ulHtml += '<dd title="' + data[i].children[j].title + '">'; 
+                    //ulHtml += '<dd Title="' + data[i].children[j].Title + '">'; 
                 }
                 ulHtml += '</dl>';
             } else {
-                var dataUrl = (data[i].href !== undefined && data[i].href !== '') ? 'data-url="' + data[i].href + '"' : '';
-                //ulHtml += '<a href="javascript:;" ' + dataUrl + '>';
-                ulHtml += '<a href="' + data[i].href + '"' + dataUrl + ' style="text-decoration: none" target="index" id="' + data[i].id+'">';
-                if (data[i].icon !== undefined && data[i].icon !== '') {
-                   // if (data[i].icon.indexOf('fa-') !== -1) {
-                        //ulHtml += '<i class="' + data[i].icon + '" aria-hidden="true" ></i>';
+                var dataUrl = (data[i].Href !== undefined && data[i].Href !== '') ? 'data-url="' + data[i].Href + '"' : '';
+                //ulHtml += '<a Href="javascript:;" ' + dataUrl + '>';
+                ulHtml += '<a Href="' + data[i].Href + '"' + dataUrl + ' style="text-decoration: none" target="index" id="' + data[i].id+'">';
+                if (data[i].Icon !== undefined && data[i].Icon !== '') {
+                   // if (data[i].Icon.indexOf('fa-') !== -1) {
+                        //ulHtml += '<i class="' + data[i].Icon + '" aria-hidden="true" ></i>';
                    // } else {
-                        ulHtml += '<i class="' + data[i].icon + '"></i>';
+                        ulHtml += '<i class="' + data[i].Icon + '"></i>';
                     //}
                 }
-                ulHtml += '<cite> ' + data[i].title + '</cite>';
+                ulHtml += '<cite> ' + data[i].Title + '</cite>';
                 ulHtml += '</a>';
             }
             ulHtml += '</li>';

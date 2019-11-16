@@ -9,7 +9,7 @@
     layui.config({
         base: '../Layer/'   //navbar组件js所在目录
     }).use('navbar', function () {
-        getAjax("/Home/GetMenuResult", "", function (rt) {
+        getAjax("/Home/GetMenuResult", "action=lay", function (rt) {
             var httpRtn = JSON.parse(rt);
             console.log(httpRtn)
             var navbar = layui.navbar();

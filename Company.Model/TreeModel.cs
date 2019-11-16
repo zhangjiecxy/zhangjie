@@ -6,28 +6,50 @@ using System.Threading.Tasks;
 
 namespace Company.Model
 {
-  public  class TreeModel
+    /// <summary>
+    /// layui树-导航
+    /// </summary>
+  public  class TreeModel:Menu
+    {
+        public string id { get; set; }                
+        /// <summary>
+        /// 是否展开
+        /// </summary>
+        public bool spread { get; set; }        
+        /// <summary>
+        /// 子节点集合
+        /// </summary>
+        public List<TreeModel> children { get; set; }
+
+        
+    }
+
+    /// <summary>
+    /// boostrap树-树配置
+    /// </summary>
+    public class TreeBost
     {
         public string id { get; set; }
         /// <summary>
         /// 标题
         /// </summary>
-        public string title { get; set; }
+        public string text { get; set; }
         /// <summary>
-        /// 图标
+        /// 父ID
         /// </summary>
-        public string icon { get; set; }
+        public string pid { get; set; }  
         /// <summary>
-        /// 是否展开
-        /// </summary>
-        public bool spread { get; set; }
-        /// <summary>
-        /// 跳转路径
+        /// 路径
         /// </summary>
         public string href { get; set; }
         /// <summary>
+        /// 图片class
+        /// </summary>
+        public string icon { get; set; }
+        /// <summary>
         /// 子节点集合
         /// </summary>
-        public List<TreeModel> children { get; set; }
+        public List<TreeBost> nodes { get; set; }
+
     }
 }

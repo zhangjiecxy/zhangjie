@@ -35,11 +35,24 @@ namespace Company.UI.Controllers
         [HttpPost]
         public JsonResult GetMenuResult()
         {
+            string action = Request["action"];
+            if (string.IsNullOrEmpty(action))
+            {
+                return Json("");
+            }
             List<TreeModel> treeModel = new List<TreeModel>();
+            List<TreeBost> treeBost = new List<TreeBost>();
             List<Menu> Imenu = db.Menu.Where(p => p.ParentId == "" && p.GUID != "").ToList();
-
-            treeModel = GetTreeList(Imenu);
-            return Json(treeModel);
+            if (action == "lay")
+            {
+                treeModel = GetTreeList(Imenu);
+                return Json(treeModel);
+            }
+            else
+            {
+                treeBost = GetBoostrapTreeList(Imenu);
+                return Json(treeBost);
+            }
         }
 
         public List<TreeModel> GetTreeList(List<Menu> Imenu)
@@ -49,14 +62,34 @@ namespace Company.UI.Controllers
             {
                 TreeModel t = new TreeModel();
                 t.id = item.GUID;
-                t.title = item.Title;
-                t.icon = item.Icon;
-                t.href = item.Href;
+                t.Title = item.Title;
+                t.Icon = item.Icon;
+                t.Href = item.Href;
                 t.spread = false;//默认不展开
+                t.ParentId = item.ParentId;                
                 t.children = GetTreeList(GetChildMenuList(item.GUID));
                 treeModel.Add(t);
             }
             return treeModel;
+        }
+
+        public List<TreeBost> GetBoostrapTreeList(List<Menu> Imenu)
+        {
+            List<TreeBost> treeBost  = new List<TreeBost>();
+            foreach (var item in Imenu)
+            {
+                TreeBost t = new TreeBost();
+                t.id = item.GUID;
+                t.text = item.Title;                
+                t.href = item.Href;
+                t.pid = item.ParentId;
+                t.icon = item.Icon;
+                List<TreeBost> trees = new List<TreeBost>();
+                trees = GetBoostrapTreeList(GetChildMenuList(item.GUID));
+                t.nodes = trees.Count == 0 ? null : trees;
+                treeBost.Add(t);
+            }
+            return treeBost;
         }
 
         /// <summary>

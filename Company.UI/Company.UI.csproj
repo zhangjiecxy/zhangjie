@@ -415,6 +415,7 @@
     <Content Include="Layer\skin\default\loading-0.gif" />
     <Content Include="Layer\skin\default\loading-1.gif" />
     <Content Include="Layer\skin\default\loading-2.gif" />
+    <Content Include="Scripts\bootstrap-treeview.js" />
     <Content Include="Scripts\FunctionJS.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Style\bootstrap-theme.css" />

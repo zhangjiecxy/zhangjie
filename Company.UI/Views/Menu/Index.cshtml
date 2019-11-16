@@ -10,126 +10,47 @@
         <form class="form-inline form-search" method="post" style="margin-bottom:5px">
             <div class="form-group">
                 <label class="control-label">标题</label>
-                <input class="input-sm form-control" id="title" />
+                <input class="input-sm form-control" id="username" />
             </div>
             @Html.Partial("~/Views/Shared/_searchButtons.cshtml")
+        </form>
+        <form class="form-inline form-search" method="post" style="margin-bottom:5px">
+            <div class="form-group">
+                <button type="button" class="layui-btn layui-btn-sm layui-btn-radius"><i class="layui-icon layui-icon-add-1"></i>新增</button>
+                <button type="button" class="layui-btn layui-btn-sm layui-btn-radius"><i class="layui-icon layui-icon-edit"></i>编辑</button>
+                <button type="button" class="layui-btn layui-btn-sm layui-btn-danger layui-btn-radius"><i class="layui-icon layui-icon-delete"></i>删除</button>
+            </div>
         </form>
     </div>
 }
 @section Scripts{
-    <script type="text/javascript">
-        function rtOption() {
-            var _url = "@Url.Action("IndexResult", "Menu")" + "?title=" + $("#title").val();
-            var options = {
-                elem: '#demo'                
-                , skin: 'line' //皮肤
-                , even: true     //是否开启隔行颜色
-                , toolbar:"#create"
-                , height: "full"
-                , method: 'post'
-                , url: _url //数据接口
-                , contentType: 'application/json'
-                , parseData: function (res) {
-                    console.log(res)
-                    return {
-                        "code": res.code,
-                        "msg": res.msg,
-                        "count": res.count,
-                        "data": res.data
-                    };
-                }
-                , page: { theme: '#c00' } //开启分页
-                , cols:
-                    [
-                        [ //表头
-                            { field: 'GUID', title: 'ID', width: 80, sort: true, fixed: 'left', hide: true}
-                            , { field: 'Title', title: '标题', width: "20%"}
-                            , { field: 'Icon', title: '图片', width: "20%" }
-                            , { field: 'Href', title: '路径', width: "20%" }
-                            , { field: 'ParentId', title: '父节点', width: "20%" ,hide: true}
-                            , { field: 'OperateTime', title: '操作时间', width: "20%", hide: true}
-                            , { field: 'Operater', title: '操作员', width: "20%", hide: true}
-                            , { field: 'Seq', title: '排序', width: "10%", sort: true} 
-                            , { fixed: 'right', width: "20%", align: 'center', toolbar: '#barOperate' } //这里的toolbar值是模板元素的选择器
-                        ]
-                    ]
-            }
-            return options;
-        }
-        layui.use('table', function () {
-            var table = layui.table;
-            table.render(rtOption());
-            //Table事件监听
-            table.on('tool(table)', function (obj) {
-                var data = obj.data; //获得当前行数据
-                console.log(data)
-                var layEvent = obj.event;//点击事件
-                switch (layEvent) {
-                    case "edit":
-                        layer.open({
-                            title: '编辑'
-                            , type: 2
-                            , content: '/Menu/CreateOrEdit?action=edit&id=' + data.GUID
-                            , area: ['50%', '50%']
-                            , maxmin: true
-                            , shadeClose: true
-                            , skin: "layui-layer-molv"
-                        });
-                        break;
-                    case "del":
-                        layer.confirm('确定要删除么？', {
-                            btn: ['是', '否'] //按钮
-                        }, function () {
-                            getAjax("/Menu/DeleteResult", "id=" + data.GUID, function (rt) {
-                                var httpRtn = JSON.parse(rt);
-                                if (httpRtn.code == 0) {
-                                    layer.msg('已删除', { icon: 1 });
-                                    Search();
-                                    return true;
-                                }
-                                layer.msg(httpRtn.msg);
-                            })
-                        }, function () {
-
-                            });
-                        break;
-                    default:
-                }
+    <script src="~/Scripts/bootstrap-treeview.js"></script>
+    <script type="text/javascript">    
+        getAjax("/Home/GetMenuResult", "action=boostrap", function (rt) {
+            var httpRtn = JSON.parse(rt.toLowerCase(rt));
+            console.log(httpRtn)
+            $('#tr').treeview({
+                collapseIcon: "glyphicon glyphicon-chevron-down",//可收缩的节点图标
+                expandIcon: "glyphicon glyphicon-chevron-right",  //设置列表上中有子节点的图标
+                levels: 1,                 //设置初始化展开几级菜单 默认为2
+                showBorder: true,                //是否显示边框
+                showCheckbox: false,              //是否显示多选框
+                data: httpRtn,       
+                
+                //color: "#428bca",
+                //backColor: "black",背景色
+                //borderColor:'green',
+                //highlightSearchResults: true,//是否高亮搜索结果 默认true
+                //highlightSelected: true,     //是否选中高亮显示
+                //onhoverColor: "#f5f5f5",    //鼠标滑过的颜色                
+                //selectedIcon: 'glyphicon glyphicon-tint',
+                //selectedBackColor: 'black',  //设置被选中的节点背景颜色
+                //selectedColor : 'red',      //设置被选择节点的字体、图标颜色
+                //uncheckedIcon:'',             //设置未选择节点的图标                
+                //showTags: true,//显示徽章
             })
-        });
+        })
 
-        //查询
-        function Search() {
-            var table = layui.table;
-            var tableIns = table.render()
-            tableIns.reload(rtOption());
-        }
-
-        //新增
-        function Create() {
-           layer.open({
-                title: '新增'
-                ,type: 2
-               , content: '/Staff/CreateOrEdit?action=create'
-                ,area: ['50%', '50%']
-               , maxmin: true
-               , shadeClose:true
-               , skin: "layui-layer-molv"
-               , cancel: function (index, layero) { 
-                   return false;
-               }
-            });
-            //弹出即全屏
-            //layer.full(index);
-        }
-
-    </script>
-    <script type="text/html" id="barOperate">
-        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-    </script>
-    <script type="text/html" id="create">
-        <a class="layui-btn layui-btn-xs" lay-event="create" onclick="Create()">新增</a>
     </script>
 }
-<table id="demo" lay-filter="table" ></table>
+<div id="tr"></div>
