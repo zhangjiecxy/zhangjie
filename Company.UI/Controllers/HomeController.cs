@@ -42,7 +42,7 @@ namespace Company.UI.Controllers
             }
             List<TreeModel> treeModel = new List<TreeModel>();
             List<TreeBost> treeBost = new List<TreeBost>();
-            List<Menu> Imenu = db.Menu.Where(p => p.ParentId == "" && p.GUID != "").ToList();
+            List<Menu> Imenu = db.Menu.Where(p => p.ParentId == "0" && p.GUID != "").ToList();
             if (action == "lay")
             {
                 treeModel = GetTreeList(Imenu);
@@ -84,6 +84,7 @@ namespace Company.UI.Controllers
                 t.href = item.Href;
                 t.pid = item.ParentId;
                 t.icon = item.Icon;
+                t.seq = item.Seq;
                 List<TreeBost> trees = new List<TreeBost>();
                 trees = GetBoostrapTreeList(GetChildMenuList(item.GUID));
                 t.nodes = trees.Count == 0 ? null : trees;

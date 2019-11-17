@@ -1,6 +1,72 @@
 ﻿@model Company.Model.Menu
 
 @{
+    ViewBag.Title = "CreateOrEdit";
     Layout = null;
 }
+@Html.Partial("~/Views/Shared/_header.cshtml")
+<script type="text/javascript">
+    var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
 
+    layui.use('form', function () {
+        var form = layui.form;
+        var json =@Html.Raw(Json.Encode(Model)) ;//model转json
+        var action = "@ViewBag.action";
+        //给表单赋值
+        form.val("form", json);
+
+        //监听提交
+        form.on('submit(formSubmit)', function (data) {            
+            getAjax("/Menu/CreateOrEditResult", "action=" + action+"&json=" + JSON.stringify(data.field), function (rt) {
+                var httpRtn = JSON.parse(rt);
+                if (httpRtn.code==0) {
+                    layer.msg("提交成功！");
+                    $("#funcbar").attr("style", "display:none")
+                   
+                    parent.$("#hidtext").val(data.field.Title)
+                    parent.$("#hiddata").val(JSON.stringify(data.field))
+                    parent.Search();
+                    return true;
+                }
+                layer.msg(httpRtn.msg);
+            })
+            return false;
+        });
+    });
+</script>
+   
+<form class="layui-form" lay-filter="form" style="margin-top: 3%;">
+    <input type="text"  name="GUID" hidden="hidden">
+    <input type="text"  name="ParentId" hidden="hidden">
+    <div class="layui-form-item">
+        <label class="layui-form-label">标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="Title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input" style="width:60%">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">图标</label>
+        <div class="layui-input-block">
+            <input type="text" name="Icon" required   placeholder="请输入图标" autocomplete="off" class="layui-input" style="width:60%">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">路径</label>
+        <div class="layui-input-block">
+            <input type="text" name="Href" required   placeholder="请输入路径" autocomplete="off" class="layui-input" style="width:60%">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">排序</label>
+        <div class="layui-input-block">
+            <input type="number" name="Seq" required   placeholder="请输入排序" autocomplete="off" class="layui-input" style="width:60%">
+        </div>
+    </div>
+
+    <div class="layui-form-item" style="position:fixed;bottom:0" id="funcbar">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formSubmit">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>

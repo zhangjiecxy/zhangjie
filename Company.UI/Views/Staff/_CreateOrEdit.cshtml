@@ -13,8 +13,8 @@
     layui.use('form', function () {
         var form = layui.form;
         var json =@Html.Raw(Json.Encode(Model)) ;//model转json
-
-        if ("@ViewBag.action"=="detail") {
+        var action = "@ViewBag.action";
+        if (action=="detail") {
             seeDetail();
         }
         //给表单赋值
@@ -22,7 +22,7 @@
 
         //监听提交
         form.on('submit(formSubmit)', function (data) {
-            getAjax("/Staff/CreateOrEditResult", "json=" + JSON.stringify(data.field), function (rt) {
+            getAjax("/Staff/CreateOrEditResult", "action=" + action+"&json=" + JSON.stringify(data.field), function (rt) {
                 var httpRtn = JSON.parse(rt);
                 if (httpRtn.code==0) {
                     layer.msg("提交成功！");

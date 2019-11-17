@@ -29,6 +29,7 @@
                 , even: true     //是否开启隔行颜色
                 , toolbar:"#create"
                 , height: "full"
+                //, width:"90%"
                 , method: 'post'
                 , url: _url //数据接口
                 , contentType: 'application/json'
@@ -121,8 +122,8 @@
                 title: '新增'
                 ,type: 2
                , content: '/Staff/CreateOrEdit?action=create'
-                ,area: ['50%', '50%']
-               , maxmin: true
+                ,area: ['50%', '80%']
+               , maxmin: false
                , shadeClose:true
                , skin: "layui-layer-molv"
                , cancel: function (index, layero) { //关闭窗口时
@@ -158,7 +159,7 @@
         {{#  } }}
     </script>
 }
-<table id="demo" lay-filter="table"></table>
+    <div style="width:80%"><table id="demo" lay-filter="table"></table></div>
 
 
 

@@ -22,10 +22,10 @@
           <Key>
             <PropertyRef Name="StaffId" />
           </Key>
-          <Property Name="StaffId" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StaffId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Age" Type="int" Nullable="false" />
-          <Property Name="Sex" Type="nvarchar" MaxLength="10" />
+          <Property Name="Sex" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -41,20 +41,20 @@
           <Key>
             <PropertyRef Name="Login_name" />
           </Key>
-          <Property Name="GUID" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Login_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Login_password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GUID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Login_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Login_password" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ISDelete" Type="int" />
         </EntityType>
         <EntityType Name="User_Login_Info">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="UserId" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="PassWord" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="IP" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="DateTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PassWord" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="IP" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DateTime" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityContainer Name="StaffModelStoreContainer">
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
@@ -71,10 +71,10 @@
           <Key>
             <PropertyRef Name="StaffId" />
           </Key>
-          <Property Name="StaffId" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StaffId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Age" Type="Int32" Nullable="false" />
-          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="CompanyEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Staff" EntityType="Self.Staff" />
@@ -97,20 +97,20 @@
           <Key>
             <PropertyRef Name="Login_name" />
           </Key>
-          <Property Name="GUID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Login_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Login_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Login_name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Login_password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ISDelete" Type="Int32" />
         </EntityType>
         <EntityType Name="User_Login_Info">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PassWord" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="IP" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="50" />
-          <Property Name="DateTime" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PassWord" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IP" Type="String" Nullable="false" Unicode="false" FixedLength="false" MaxLength="20" />
+          <Property Name="DateTime" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
         </EntityType>
         <EntityType Name="Menu">
           <Key>

@@ -47,9 +47,13 @@ namespace Company.Model
         /// </summary>
         public string icon { get; set; }
         /// <summary>
+        /// 排序
+        /// </summary>
+        public int? seq { get; set; }
+        /// <summary>
         /// 子节点集合
         /// </summary>
         public List<TreeBost> nodes { get; set; }
-
+        
     }
 }

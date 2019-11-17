@@ -81,12 +81,21 @@ namespace Company.UI
         {
             string msg = string.Empty;
             string json = Request["json"];
+            string action = Request["action"];
             HttpReturn httpReturn = new HttpReturn();
 
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             Staff staff = serializer.Deserialize<Staff>(json);
-            staff.StaffId= Guid.NewGuid().ToString();
-            db.Staff.Add(staff);           
+            staff.StaffId= staff.StaffId==null?Guid.NewGuid().ToString(): staff.StaffId;
+            switch (action)
+            {
+                case "create":
+                    db.Entry(staff).State = EntityState.Added;
+                    break;
+                default:
+                    db.Entry(staff).State = EntityState.Modified;
+                    break;
+            }
             try
             {
                 if (db.SaveChanges() > 0)

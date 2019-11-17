@@ -10,47 +10,204 @@
         <form class="form-inline form-search" method="post" style="margin-bottom:5px">
             <div class="form-group">
                 <label class="control-label">标题</label>
-                <input class="input-sm form-control" id="username" />
+                <input class="input-sm form-control" id="title" />
             </div>
             @Html.Partial("~/Views/Shared/_searchButtons.cshtml")
         </form>
         <form class="form-inline form-search" method="post" style="margin-bottom:5px">
             <div class="form-group">
-                <button type="button" class="layui-btn layui-btn-sm layui-btn-radius"><i class="layui-icon layui-icon-add-1"></i>新增</button>
-                <button type="button" class="layui-btn layui-btn-sm layui-btn-radius"><i class="layui-icon layui-icon-edit"></i>编辑</button>
-                <button type="button" class="layui-btn layui-btn-sm layui-btn-danger layui-btn-radius"><i class="layui-icon layui-icon-delete"></i>删除</button>
+                <button type="button" onclick="Create()" class="layui-btn layui-btn-sm layui-btn-radius"><i class="layui-icon layui-icon-add-1"></i>新增</button>
+
             </div>
         </form>
     </div>
 }
 @section Scripts{
     <script src="~/Scripts/bootstrap-treeview.js"></script>
-    <script type="text/javascript">    
-        getAjax("/Home/GetMenuResult", "action=boostrap", function (rt) {
-            var httpRtn = JSON.parse(rt.toLowerCase(rt));
-            console.log(httpRtn)
-            $('#tr').treeview({
-                collapseIcon: "glyphicon glyphicon-chevron-down",//可收缩的节点图标
-                expandIcon: "glyphicon glyphicon-chevron-right",  //设置列表上中有子节点的图标
-                levels: 1,                 //设置初始化展开几级菜单 默认为2
-                showBorder: true,                //是否显示边框
-                showCheckbox: false,              //是否显示多选框
-                data: httpRtn,       
-                
-                //color: "#428bca",
-                //backColor: "black",背景色
-                //borderColor:'green',
-                //highlightSearchResults: true,//是否高亮搜索结果 默认true
-                //highlightSelected: true,     //是否选中高亮显示
-                //onhoverColor: "#f5f5f5",    //鼠标滑过的颜色                
-                //selectedIcon: 'glyphicon glyphicon-tint',
-                //selectedBackColor: 'black',  //设置被选中的节点背景颜色
-                //selectedColor : 'red',      //设置被选择节点的字体、图标颜色
-                //uncheckedIcon:'',             //设置未选择节点的图标                
-                //showTags: true,//显示徽章
-            })
-        })
+    <script type="text/javascript">  
+        var options = {}
+        var $init = function () {
+            getAjax("/Home/GetMenuResult", "action=boostrap", function (rt) {
+                var httpRtn = JSON.parse(rt.toLowerCase(rt));
+                var tree = function () {
+                    return $('#tree').treeview({
+                        collapseIcon: "glyphicon glyphicon-chevron-down",//可收缩的节点图标
+                        expandIcon: "glyphicon glyphicon-chevron-right",  //设置列表上中有子节点的图标
+                        levels: 1,                 //设置初始化展开几级菜单 默认为2
+                        showBorder: true,                //是否显示边框
+                        showCheckbox: false,              //是否显示多选框
+                        data: httpRtn,
+                        onNodeSelected: function (event, node) {                           
+                            var Pid = $('#tree').treeview('getParent', node.nodeId);  //获取父id
+                            $("#hidtext").val(node.text);
+                            //路径追加显示
+                            function func(nodeId, text) //递归调用
+                            {
+                                if (nodeId == undefined) {
+                                    return '';
+                                }
+                                var id = $('#tree').treeview('getParent', nodeId);
+                                return func(id.nodeId, id.text) + " > " + text;
+                            }
+                            var positionText = func(node.nodeId, node.text);
+                            $("#curPositon").html("当前位置：" + positionText);
+                            //展示table    
+                            options = {
+                                elem: '#table'
+                                , title: "123"
+                                , skin: 'line' //皮肤
+                                , even: true     //是否开启隔行颜色
+                                //, toolbar: "#create"
+                                , height: "full"
+                                , method: 'post'
+                                , data: [node]  //数据接口
+                                , contentType: 'application/json'
+                                , cols:
+                                    [
+                                        [ //表头
+                                            { field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left', hide: true }
+                                            , { field: 'parentid', title: '', width: 80, hide: true }
+                                            , { field: 'text', title: '标题', width: "15%" }
+                                            , { field: 'icon', title: '图标', width: "25%" }
+                                            , { field: 'href', title: '路径', width: "20%" }
+                                            , { field: 'seq', title: '排序', width: "10%", sort: true }
 
+                                            , { fixed: 'right', width: "30%", align: 'center', toolbar: '#barOperate' } //这里的toolbar值是模板元素的选择器
+                                        ]
+                                    ]
+                            }
+                            layui.use('table', function () {
+                                var table = layui.table;
+                                table.render(options);
+                                //Table事件监听
+                                table.on('tool(table)', function (obj) {
+                                    var data = obj.data; //获得当前行数据
+                                    var layEvent = obj.event;//点击事件
+                                    switch (layEvent) {
+                                        case "edit":
+                                            layer.open({
+                                                title: '编辑'
+                                                , type: 2
+                                                , content: '/Menu/CreateOrEdit?acton=edit&id=' + data.id
+                                                , area: ['50%', '80%']
+                                                , maxmin: false
+                                                , shadeClose: true
+                                                , skin: "layui-layer-molv"
+                                            });
+                                            break;
+                                        case "del":
+                                            layer.confirm('确定要删除么？', {
+                                                btn: ['是', '否'] //按钮
+                                            }, function () {
+                                                getAjax("/Menu/DeleteResult", "action=del&id=" + data.id, function (rt) {
+                                                    var httpRtn = JSON.parse(rt);
+                                                    if (httpRtn.code == 0) {
+                                                        layer.msg('已删除', { icon: 1 });
+                                                        Search();
+                                                        return true;
+                                                    }
+                                                    layer.msg(httpRtn.msg);
+                                                })
+                                            }, function () {
+
+                                            });
+                                            break;
+                                        default:
+                                    }
+                                })
+                            });
+
+                        }
+                        //color: "#428bca",
+                        //backColor: "black",背景色
+                        //borderColor:'green',
+                        //highlightSearchResults: true,//是否高亮搜索结果 默认true
+                        //highlightSelected: true,     //是否选中高亮显示
+                        //onhoverColor: "#f5f5f5",    //鼠标滑过的颜色
+                        //selectedIcon: 'glyphicon glyphicon-tint',
+                        //selectedBackColor: 'black',  //设置被选中的节点背景颜色
+                        //selectedColor : 'red',      //设置被选择节点的字体、图标颜色
+                        //uncheckedIcon:'',             //设置未选择节点的图标
+                        //showTags: true,//显示徽章
+                    })
+                }
+                var $searchableTree = tree();
+
+                var findSearchableNodes = function () {                     
+                    return $searchableTree.treeview('search', [$.trim($('#title').val()), { ignoreCase: false, exactMatch: false }]);
+                };
+                var searchableNodes = findSearchableNodes();
+                $("#title").on('keyup', function (e) {
+                    var str = $("#title").val();                    
+                    if ($.trim(str).length > 0) {
+                        searchableNodes = findSearchableNodes();
+                    } else {
+                        $('#tree').treeview('collapseAll', {
+                            silent: false //设置初始化节点关闭
+                        });
+
+                    }
+                })
+            })
+        }
+        $(function () {
+            $init()
+        })
+        //新增
+        function Create() {
+            layer.open({
+                title: '新增'
+                , type: 2
+                , content: '/Menu/CreateOrEdit?action=create'
+                , area: ['50%', '80%']
+                , maxmin: false
+                , shadeClose: true
+                , skin: "layui-layer-molv"
+            });
+        }
+        //查询
+        function Search() {
+            var text = $.trim($('#hidtext').val());
+            if (text == "" || text==undefined) {
+                return false;
+            }
+            $init();
+            $("#tree").treeview('search', [text, { ignoreCase: false, exactMatch: false }]);
+            debugger;
+            var table = layui.table;
+            if (table != undefined) {
+                var tableIns = table.render()
+                options.data = [dataHandle($("#hiddata").val())];
+                tableIns.reload(options);
+            }
+        }
+
+        //数据格式处理---boostrap树的数据格式跟layUI的table需要的格式不一样 需要转换
+        function dataHandle(data) {
+            debugger;
+            if (data == undefined || data=="") {
+                return {};
+            }
+            var _data = data.replace('GUID', 'id').replace('Href', 'href').replace('Icon', 'icon').replace('ParentId', 'pid').replace('Seq', 'seq')
+                .replace('Title', 'text')
+            return JSON.parse(_data);
+        }
+    </script>
+    <script type="text/html" id="barOperate">
+        <button type="button"  lay-event="edit" class="layui-btn layui-btn-sm layui-btn-radius"><i class="layui-icon layui-icon-edit"></i>编辑</button>
+        <button type="button"  lay-event="del" class="layui-btn layui-btn-sm layui-btn-danger layui-btn-radius"><i class="layui-icon layui-icon-delete"></i>删除</button>
     </script>
 }
-<div id="tr"></div>
+<a style="text-decoration-line:none;border:0" id="curPositon" class="input-sm form-control">当前位置：</a>
+<input  hidden="hidden" id="hidtext"/>
+<input hidden="hidden" id="hiddata" />
+<div class="layui-row">
+    <div class="layui-col-md3">
+        <div class="grid-demo grid-demo-bg1"><div id="tree"></div></div>
+    </div>
+    <div class="layui-col-md9">
+        <div class="grid-demo" style="width:80%">
+            <table id="table" style="margin-top:-10px" lay-filter="table"></table>
+        </div>
+    </div>
+</div>

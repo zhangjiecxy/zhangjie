@@ -359,7 +359,7 @@
 <body>
     <div class="login-box">
         <h1>
-            后台管理系统</h1>
+            管理系统</h1>
         <form method="post" action="">
         <div class="name">
             <label id="lblAccount">
