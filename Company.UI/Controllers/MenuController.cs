@@ -30,9 +30,11 @@ namespace Company.UI
             Menu menu = new Menu();
             string id = Request["id"];
             string action = Request["action"];
+            string pid = Request["pid"];
             if (!string.IsNullOrEmpty(action))
             {
                 ViewBag.action = action;
+                ViewBag.pid = pid;
             }
             if (!string.IsNullOrEmpty(id))
             {

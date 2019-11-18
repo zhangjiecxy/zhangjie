@@ -12,9 +12,10 @@
         var form = layui.form;
         var json =@Html.Raw(Json.Encode(Model)) ;//model转json
         var action = "@ViewBag.action";
+        var pid = "@ViewBag.pid";
         //给表单赋值
         form.val("form", json);
-
+        $("#ParentId").val(pid);
         //监听提交
         form.on('submit(formSubmit)', function (data) {            
             getAjax("/Menu/CreateOrEditResult", "action=" + action+"&json=" + JSON.stringify(data.field), function (rt) {
@@ -37,7 +38,7 @@
    
 <form class="layui-form" lay-filter="form" style="margin-top: 3%;">
     <input type="text"  name="GUID" hidden="hidden">
-    <input type="text"  name="ParentId" hidden="hidden">
+    <input type="text" id="ParentId"  name="ParentId" hidden="hidden">
     <div class="layui-form-item">
         <label class="layui-form-label">标题</label>
         <div class="layui-input-block">

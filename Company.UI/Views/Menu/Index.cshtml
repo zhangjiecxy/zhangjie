@@ -38,8 +38,9 @@
                         showCheckbox: false,              //是否显示多选框
                         data: httpRtn,
                         onNodeSelected: function (event, node) {                           
-                            var Pid = $('#tree').treeview('getParent', node.nodeId);  //获取父id
-                            $("#hidtext").val(node.text);
+                            var Pid = $('#tree').treeview('getParent', node.nodeId);  //获取父id                          
+                            $("#hidtext").val(node.text);     
+                            $("#hidid").val(node.id);
                             //路径追加显示
                             function func(nodeId, text) //递归调用
                             {
@@ -117,6 +118,9 @@
                                 })
                             });
 
+                        },
+                        onNodeUnselected(event, node) {                           
+                            $("#hidid").val("");
                         }
                         //color: "#428bca",
                         //backColor: "black",背景色
@@ -158,7 +162,7 @@
             layer.open({
                 title: '新增'
                 , type: 2
-                , content: '/Menu/CreateOrEdit?action=create'
+                , content: '/Menu/CreateOrEdit?action=create&pid=' +$("#hidid").val() //将当前选择的id作为pid传给下级  即创建下一级节点,如果未选中节点 则添加根节点
                 , area: ['50%', '80%']
                 , maxmin: false
                 , shadeClose: true
@@ -172,8 +176,7 @@
                 return false;
             }
             $init();
-            $("#tree").treeview('search', [text, { ignoreCase: false, exactMatch: false }]);
-            debugger;
+            $("#tree").treeview('search', [text, { ignoreCase: false, exactMatch: false }]);           
             var table = layui.table;
             if (table != undefined) {
                 var tableIns = table.render()
@@ -183,8 +186,7 @@
         }
 
         //数据格式处理---boostrap树的数据格式跟layUI的table需要的格式不一样 需要转换
-        function dataHandle(data) {
-            debugger;
+        function dataHandle(data) {           
             if (data == undefined || data=="") {
                 return {};
             }
@@ -200,6 +202,7 @@
 }
 <a style="text-decoration-line:none;border:0" id="curPositon" class="input-sm form-control">当前位置：</a>
 <input  hidden="hidden" id="hidtext"/>
+<input hidden="hidden" id="hidid" />
 <input hidden="hidden" id="hiddata" />
 <div class="layui-row">
     <div class="layui-col-md3">
